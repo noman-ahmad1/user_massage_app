@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "459600208813",
+    "firebase_url": "https://thai-massage-8a4e7-default-rtdb.firebaseio.com",
+    "project_id": "thai-massage-8a4e7",
+    "storage_bucket": "thai-massage-8a4e7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459600208813:android:e7ad8222b569b3b4e07724",
+        "android_client_info": {
+          "package_name": "io.initappz.ultimate.salon.owner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZGsg9ytjUCFMN9cQ5cxE614Lx6YSqNaM"
+        },
+        {
+          "current_key": "AIzaSyCMHXq5tBVbpT0cqEe8KM_ec4O1AL38GUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459600208813:android:de35bd5de06c5ad4e07724",
+        "android_client_info": {
+          "package_name": "io.initappz.ultimate.salon.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZGsg9ytjUCFMN9cQ5cxE614Lx6YSqNaM"
+        },
+        {
+          "current_key": "AIzaSyCMHXq5tBVbpT0cqEe8KM_ec4O1AL38GUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

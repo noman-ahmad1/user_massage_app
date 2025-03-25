@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCbzfbwBavB68K1wrbTm-8TiSdPiVU3pcI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>459600208813</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.initappz.ultimate.salon.user</string>
+	<key>PROJECT_ID</key>
+	<string>thai-massage-8a4e7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>thai-massage-8a4e7.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:459600208813:ios:6543c87f09f86beae07724</string>
+	<key>DATABASE_URL</key>
+	<string>https://thai-massage-8a4e7-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

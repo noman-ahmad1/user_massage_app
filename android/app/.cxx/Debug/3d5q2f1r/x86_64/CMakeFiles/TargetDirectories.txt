@@ -1,0 +1,2 @@
+/Users/mac/Downloads/App_source_code_v8/User_app/android/app/.cxx/Debug/3d5q2f1r/x86_64/CMakeFiles/edit_cache.dir
+/Users/mac/Downloads/App_source_code_v8/User_app/android/app/.cxx/Debug/3d5q2f1r/x86_64/CMakeFiles/rebuild_cache.dir
