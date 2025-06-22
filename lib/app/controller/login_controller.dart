@@ -341,7 +341,7 @@ class LoginController extends GetxController implements GetxService {
                   const SizedBox(height: 10),
                   OtpTextField(
                     numberOfFields: 6,
-                    borderColor: ThemeProvider.greyColor,
+                    borderColor: ThemeProvider.secondaryAppColor,
                     keyboardType: TextInputType.number,
                     focusedBorderColor: ThemeProvider.appColor,
                     showFieldAsBox: true,

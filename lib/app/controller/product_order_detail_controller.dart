@@ -299,7 +299,7 @@ class ProductOrderDetailController extends GetxController implements GetxService
           ),
           CupertinoActionSheetAction(
             child: Text(
-              'Call'.tr,
+              phone,
               style: const TextStyle(color: ThemeProvider.appColor),
             ),
             onPressed: () {

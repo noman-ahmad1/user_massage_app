@@ -56,7 +56,7 @@ class ProductCartController extends GetxController implements GetxService {
     _shippingPrice = parser.shippingPrice();
     _shippingMethod = parser.getShippingMethod();
     _freeShipping = parser.freeOrderPrice();
-    _orderTax = parser.taxOrderPrice();
+    // _orderTax = parser.taxOrderPrice();
   }
 
   void getCart() {

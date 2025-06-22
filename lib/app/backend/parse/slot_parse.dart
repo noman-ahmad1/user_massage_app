@@ -18,6 +18,10 @@ class SlotParser {
   SlotParser({required this.apiService, required this.sharedPreferencesManager});
 
   Future<Response> getSlots(var body) {
+    print(AppConstants.getSlotsForBookings);
+    print(body);
+    print(sharedPreferencesManager.getString('token') ?? '');
+    print(sharedPreferencesManager.getString('userId') ?? '');
     return apiService.postPrivate(AppConstants.getSlotsForBookings, body, sharedPreferencesManager.getString('token') ?? '');
   }
 

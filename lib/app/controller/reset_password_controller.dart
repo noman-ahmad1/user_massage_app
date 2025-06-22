@@ -56,7 +56,9 @@ class ResetPasswordController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       isLogin.value = !isLogin.value;
       Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
-      if (myMap['data'] != '' && myMap['data'] == true) {
+      // if (myMap['data'] != '' && myMap['data'] == true)
+      if (myMap['success'] == true)
+      {
         smsId = myMap['otp_id'];
         FocusManager.instance.primaryFocus?.unfocus();
         onEmailModal();
@@ -114,7 +116,7 @@ class ResetPasswordController extends GetxController implements GetxService {
                     const SizedBox(height: 10),
                     OtpTextField(
                       numberOfFields: 6,
-                      borderColor: ThemeProvider.greyColor,
+                      borderColor: ThemeProvider.secondaryAppColor,
                       keyboardType: TextInputType.number,
                       focusedBorderColor: ThemeProvider.appColor,
                       showFieldAsBox: true,

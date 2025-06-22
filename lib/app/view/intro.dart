@@ -118,14 +118,14 @@ class _IntroScreenState extends State<IntroScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/1.png'), fit: BoxFit.contain))),
+        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/123.png'), fit: BoxFit.contain))),
         Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Text('Find Barbarshop Nearby !'.tr, textAlign: TextAlign.center, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
+              child: Text('Relax at Nearby Massage Centers !'.tr, textAlign: TextAlign.center, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
             ),
-            Text('Lorem Ipsum is simply dummy text of the printing \n and typesetting industry'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
+            Text('Book instant soothing sessions at the best spas \n around you.'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
           ],
         ),
       ],
@@ -136,14 +136,14 @@ class _IntroScreenState extends State<IntroScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/2.png'), fit: BoxFit.contain))),
+        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/45.png'), fit: BoxFit.contain))),
         Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text('Attractive Promotions !'.tr, textAlign: TextAlign.center, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
             ),
-            Text('Lorem Ipsum is simply dummy text of the printing \n and typesetting industry'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
+            Text('Unlock exclusive deals and discounts on premium \n massage sessions.'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
           ],
         ),
       ],
@@ -154,14 +154,14 @@ class _IntroScreenState extends State<IntroScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/3.png'), fit: BoxFit.contain))),
+        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/67.png'), fit: BoxFit.contain))),
         Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text('Professional Specialist !'.tr, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
             ),
-            Text('Lorem Ipsum is simply dummy text of the printing \n and typesetting industry'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
+            Text('Experienced therapists dedicated to your wellness journey'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
           ],
         ),
       ],
@@ -172,14 +172,14 @@ class _IntroScreenState extends State<IntroScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/4.png'), fit: BoxFit.contain))),
+        Container(height: screenSize.height*0.7, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/89.png'), fit: BoxFit.contain))),
         Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Text('Get Specialist at your door steps !'.tr, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
+              child: Text('Get Specialist at your door steps !'.tr, textAlign: TextAlign.center, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
             ),
-            Text('Lorem Ipsum is simply dummy text of the printing \n and typesetting industry'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
+            Text('Book expert therapists for premium at-home wellness sessions'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
           ],
         ),
       ],
@@ -190,14 +190,14 @@ class _IntroScreenState extends State<IntroScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/5.png'), fit: BoxFit.contain))),
+        Container(height: screenSize.height*0.72, decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/sliders/10.png'), fit: BoxFit.contain))),
         Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text('Buy from trusted professional !'.tr, style: const TextStyle(fontFamily: 'bold', color: ThemeProvider.blackColor, fontSize: 17)),
             ),
-            Text('Lorem Ipsum is simply dummy text of the printing \n and typesetting industry'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
+            Text('Quality products & services backed by certified experts'.tr, textAlign: TextAlign.center, style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 15)),
           ],
         ),
       ],

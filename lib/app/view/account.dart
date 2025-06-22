@@ -93,7 +93,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         value.parser.haveLoggedIn() == true ? InkWell(onTap: () => value.onReferAndEarn(), child: _buildList(Icons.savings_outlined, 'Refer & Earn'.tr)) : const SizedBox(),
                         InkWell(onTap: () => value.onChangePassword(), child: _buildList(Icons.code_rounded, 'Change Password'.tr)),
                         InkWell(onTap: () => value.onLanguages(), child: _buildList(Icons.language_outlined, 'Languages'.tr)),
-                        value.parser.haveLoggedIn() == true ? InkWell(onTap: () => value.onAccountChat(), child: _buildList(Icons.message_outlined, 'Chats'.tr)) : const SizedBox(),
+                        // value.parser.haveLoggedIn() == true ? InkWell(onTap: () => value.onAccountChat(), child: _buildList(Icons.message_outlined, 'Chats'.tr)) : const SizedBox(),
                         InkWell(onTap: () => value.onContactUs(), child: _buildList(Icons.contact_page_outlined, 'Contact Us'.tr)),
                       ],
                     ),

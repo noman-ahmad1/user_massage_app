@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:user/app/controller/appointment_detail_controller.dart';
 import 'package:user/app/env.dart';
 import 'package:user/app/util/theme.dart';
+import 'package:user/app/view/feedback.dart';
 
 class AppointmentDetailScreen extends StatefulWidget {
   const AppointmentDetailScreen({super.key});
@@ -187,7 +188,7 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('Specialist'.tr, overflow: TextOverflow.ellipsis, style: const TextStyle(color: ThemeProvider.appColor, fontFamily: 'bold', fontSize: 15)),
+                                          Text('Therapist'.tr, overflow: TextOverflow.ellipsis, style: const TextStyle(color: ThemeProvider.appColor, fontFamily: 'bold', fontSize: 15)),
                                         ],
                                       ),
                                     )
@@ -222,7 +223,16 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                                               overflow: TextOverflow.ellipsis,
                                               style: const TextStyle(fontFamily: 'bold', fontSize: 14),
                                             ),
-                                          )
+                                          ),
+                                          IconButton(
+                                          onPressed: () {
+                                            value.navigateToFeedbackScreen( value.appointmentInfo.salonId,  value.appointmentInfo.specialistId ,   value.appointmentInfo.freelancerId ,  value.appointmentInfo.uid );
+                                            //Get.to(()=> FeedbackScreen(salon_id:  value.appointmentInfo.salonId,specialist_id:  value.appointmentInfo.specialistId , freelancer_id:  value.appointmentInfo.freelancerId , user_id: value.appointmentInfo.uid ));
+                                            // value.onContactInfo(value.appointmentInfo.salonInfo!.name!, value.appointmentInfo.ownerInfo!.mobile!, value.appointmentInfo.ownerInfo!.email!, value.appointmentInfo.salonId.toString());
+                                          },
+                                          icon: const Icon(Icons.info),
+                                          color: ThemeProvider.appColor,
+                                        )
                                         ],
                                       ),
                                     )

@@ -293,6 +293,8 @@ class IndividualPaymentController extends GetxController implements GetxService 
       payMethodName = 'paystack';
     } else if (paymentId == 8) {
       payMethodName = 'flutterwave';
+    } else if (paymentId == 9) {
+      payMethodName = 'Loyalty Points';
     }
     update();
   }

@@ -21,8 +21,19 @@ class ServicesModel {
   String? extraField;
   int? status;
   late bool? isChecked;
+  List<dynamic>? prices;
+  List<dynamic>? discounts;
+  List<dynamic>? offs;
+  List<dynamic>? durations;
+  List<dynamic>? ids;
+  dynamic selectedVariant;
+  dynamic selectedSubId;
 
-  ServicesModel({this.id, this.uid, this.cateId, this.name, this.cover, this.duration, this.price, this.off, this.discount, this.descriptions, this.images, this.extraField, this.isChecked = false, this.status});
+  ServicesModel({this.id, this.uid, this.cateId, this.name, this.cover, this.duration, this.price, this.off, this.discount, this.descriptions, this.images, this.extraField, this.isChecked = false, this.status, this.prices = const [],
+    this.discounts = const [],
+    this.offs = const [],
+    this.durations = const [],
+    this.ids = const [], this.selectedVariant, this.selectedSubId });
 
   ServicesModel.fromJson(Map<String, dynamic> json) {
     id = int.parse(json['id'].toString());
@@ -39,6 +50,11 @@ class ServicesModel {
     extraField = json['extra_field'];
     status = int.parse(json['status'].toString());
     isChecked = json['isChecked'];
+      prices =  [];
+    discounts =  [];
+    offs =  [];
+    durations =  [];
+    ids = [];
   }
 
   Map<String, dynamic> toJson() {

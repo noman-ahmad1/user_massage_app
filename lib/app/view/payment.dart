@@ -38,10 +38,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
             title: Text('Payment'.tr, style: ThemeProvider.titleStyle),
           ),
           body: value.apiCalled == false
-              ? const Center(child: CircularProgressIndicator(color: ThemeProvider.appColor))
+              ? const Center(
+                  child:
+                      CircularProgressIndicator(color: ThemeProvider.appColor))
               : SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     child: Column(
                       children: [
                         // value.salonDetails.serviceAtHome == 1 ? Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('Service at'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 14))]) : const SizedBox(),
@@ -94,7 +97,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         //         ),
                         //       )
                         //     : const SizedBox(),
-                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('Offers & Benefits'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 14))]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Offers & Benefits'.tr,
+                                  style: const TextStyle(
+                                      fontFamily: 'bold', fontSize: 14))
+                            ]),
                         Container(
                           height: 50,
                           width: double.infinity,
@@ -103,7 +112,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: ThemeProvider.whiteColor,
-                            boxShadow: const [BoxShadow(color: ThemeProvider.greyColor, blurRadius: 5.0, offset: Offset(0.7, 2.0))],
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: ThemeProvider.greyColor,
+                                  blurRadius: 5.0,
+                                  offset: Offset(0.7, 2.0))
+                            ],
                           ),
                           child: InkWell(
                             onTap: () {
@@ -115,9 +129,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: value.offerName.isEmpty ? Text('Apply Coupon Code'.tr, overflow: TextOverflow.ellipsis) : Text('Coupon Applied :'.tr + value.offerName, overflow: TextOverflow.ellipsis),
+                                  child: value.offerName.isEmpty
+                                      ? Text('Apply Coupon Code'.tr,
+                                          overflow: TextOverflow.ellipsis)
+                                      : Text(
+                                          'Coupon Applied :'.tr +
+                                              value.offerName,
+                                          overflow: TextOverflow.ellipsis),
                                 ),
-                                const Icon(Icons.chevron_right, color: ThemeProvider.greyColor),
+                                const Icon(Icons.chevron_right,
+                                    color: ThemeProvider.greyColor),
                               ],
                             ),
                           ),
@@ -130,7 +151,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: ThemeProvider.whiteColor,
-                            boxShadow: const [BoxShadow(color: ThemeProvider.greyColor, blurRadius: 5.0, offset: Offset(0.7, 2.0))],
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: ThemeProvider.greyColor,
+                                  blurRadius: 5.0,
+                                  offset: Offset(0.7, 2.0))
+                            ],
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,15 +165,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 checkColor: Colors.white,
                                 activeColor: ThemeProvider.appColor,
                                 value: value.isWalletChecked,
-                                onChanged: value.balance <= 0 || value.offerName.isNotEmpty ? null : (bool? status) => value.updateWalletChecked(status!),
+                                onChanged: value.balance <= 0 ||
+                                        value.offerName.isNotEmpty
+                                    ? null
+                                    : (bool? status) =>
+                                        value.updateWalletChecked(status!),
                               ),
                               Expanded(
-                                child: value.currencySide == 'left' ? Text('${'Available Balance'.tr + value.currencySymbol}${value.balance}') : Text('${'Available Balance'.tr + value.balance.toString()}${value.currencySymbol}'),
+                                child: value.currencySide == 'left'
+                                    ? Text(
+                                        '${'Available Balance'.tr + value.currencySymbol}${value.balance}')
+                                    : Text(
+                                        '${'Available Balance'.tr + value.balance.toString()}${value.currencySymbol}'),
                               ),
                             ],
                           ),
                         ),
-                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('Notes For Service'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 14))]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Notes For Service'.tr,
+                                  style: const TextStyle(
+                                      fontFamily: 'bold', fontSize: 14))
+                            ]),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Container(
@@ -155,7 +195,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: ThemeProvider.whiteColor,
-                              boxShadow: const [BoxShadow(color: ThemeProvider.greyColor, blurRadius: 5.0, offset: Offset(0.7, 2.0))],
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: ThemeProvider.greyColor,
+                                    blurRadius: 5.0,
+                                    offset: Offset(0.7, 2.0))
+                              ],
                             ),
                             child: TextField(
                               controller: value.notesEditor,
@@ -164,31 +209,52 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 filled: true,
                                 fillColor: ThemeProvider.whiteColor,
                                 hintText: 'Appoinments notes'.tr,
-                                contentPadding: const EdgeInsets.only(bottom: 8.0, top: 14.0, left: 10),
-                                focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: ThemeProvider.appColor)),
-                                enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: ThemeProvider.transparent)),
+                                contentPadding: const EdgeInsets.only(
+                                    bottom: 8.0, top: 14.0, left: 10),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ThemeProvider.appColor)),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ThemeProvider.transparent)),
                               ),
                             ),
                           ),
                         ),
-                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('Bill Details'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 14))]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Bill Details'.tr,
+                                  style: const TextStyle(
+                                      fontFamily: 'bold', fontSize: 14))
+                            ]),
                         Container(
                           width: double.infinity,
                           margin: const EdgeInsets.symmetric(vertical: 10),
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: ThemeProvider.whiteColor,
-                            boxShadow: const [BoxShadow(color: ThemeProvider.greyColor, blurRadius: 5.0, offset: Offset(0.7, 2.0))],
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: ThemeProvider.greyColor,
+                                  blurRadius: 5.0,
+                                  offset: Offset(0.7, 2.0))
+                            ],
                           ),
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(child: Text('item Total'.tr, overflow: TextOverflow.ellipsis)),
+                                    Expanded(
+                                        child: Text('item Total'.tr,
+                                            overflow: TextOverflow.ellipsis)),
                                     Text(
                                       value.currencySide == 'left'
                                           ? '${value.currencySymbol}${Get.find<ServiceCartController>().totalPrice.toString()}'
@@ -198,28 +264,49 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(child: Text('item Discount'.tr, overflow: TextOverflow.ellipsis, style: const TextStyle(color: ThemeProvider.redColor))),
+                                    Expanded(
+                                        child: Text('item Discount'.tr,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                                color:
+                                                    ThemeProvider.redColor))),
                                     Text(
-                                      value.currencySide == 'left' ? '-${value.currencySymbol}${value.discount.toString()}' : '-${value.discount.toString()}${value.currencySymbol}',
-                                      style: const TextStyle(color: ThemeProvider.redColor),
+                                      value.currencySide == 'left'
+                                          ? '-${value.currencySymbol}${value.discount.toString()}'
+                                          : '-${value.discount.toString()}${value.currencySymbol}',
+                                      style: const TextStyle(
+                                          color: ThemeProvider.redColor),
                                     ),
                                   ],
                                 ),
                               ),
                               value.isWalletChecked == true
                                   ? Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 5),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Expanded(child: Text('Wallet Discount'.tr, overflow: TextOverflow.ellipsis, style: const TextStyle(color: ThemeProvider.redColor))),
+                                          Expanded(
+                                              child: Text('Wallet Discount'.tr,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                      color: ThemeProvider
+                                                          .redColor))),
                                           Text(
-                                            value.currencySide == 'left' ? '-${value.currencySymbol}${value.walletDiscount.toString()}' : '-${value.walletDiscount.toString()}${value.currencySymbol}',
-                                            style: const TextStyle(color: ThemeProvider.redColor),
+                                            value.currencySide == 'left'
+                                                ? '-${value.currencySymbol}${value.walletDiscount.toString()}'
+                                                : '-${value.walletDiscount.toString()}${value.currencySymbol}',
+                                            style: const TextStyle(
+                                                color: ThemeProvider.redColor),
                                           ),
                                         ],
                                       ),
@@ -227,24 +314,35 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   : const SizedBox(),
                               value.appointmentsTo == 1
                                   ? Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 5),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Expanded(child: Text('Distance Charge'.tr, overflow: TextOverflow.ellipsis)),
+                                          Expanded(
+                                              child: Text('Distance Charge'.tr,
+                                                  overflow:
+                                                      TextOverflow.ellipsis)),
                                           Text(
-                                            value.currencySide == 'left' ? '${value.currencySymbol}${value.deliveryPrice.toString()}' : '${value.deliveryPrice.toString()}${value.currencySymbol}',
+                                            value.currencySide == 'left'
+                                                ? '${value.currencySymbol}${value.deliveryPrice.toString()}'
+                                                : '${value.deliveryPrice.toString()}${value.currencySymbol}',
                                           ),
                                         ],
                                       ),
                                     )
                                   : const SizedBox(),
                               Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(child: Text('Taxes & Charges'.tr, overflow: TextOverflow.ellipsis)),
+                                    Expanded(
+                                        child: Text('Taxes & Charges'.tr,
+                                            overflow: TextOverflow.ellipsis)),
                                     Text(
                                       value.currencySide == 'left'
                                           ? '${value.currencySymbol}${Get.find<ServiceCartController>().orderTax.toString()}'
@@ -255,14 +353,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ),
                               const Divider(),
                               Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(child: Text('To Pay'.tr, overflow: TextOverflow.ellipsis, style: const TextStyle(color: ThemeProvider.appColor, fontFamily: 'bold'))),
+                                    Expanded(
+                                        child: Text('To Pay'.tr,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                                color: ThemeProvider.appColor,
+                                                fontFamily: 'bold'))),
                                     Text(
-                                      value.currencySide == 'left' ? '${value.currencySymbol}${value.grandTotal.toString()}' : '${value.grandTotal.toString()}${value.currencySymbol}',
-                                      style: const TextStyle(color: ThemeProvider.appColor, fontFamily: 'bold'),
+                                      value.currencySide == 'left'
+                                          ? '${value.currencySymbol}${value.grandTotal.toString()}'
+                                          : '${value.grandTotal.toString()}${value.currencySymbol}',
+                                      style: const TextStyle(
+                                          color: ThemeProvider.appColor,
+                                          fontFamily: 'bold'),
                                     ),
                                   ],
                                 ),
@@ -270,35 +379,58 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             ],
                           ),
                         ),
-                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('Payment Method'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 14))]),
-                        value.paymentAPICalled == false ? SizedBox(height: 300, child: SkeletonListView(itemCount: 5)) : const SizedBox(),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Payment Method'.tr,
+                                  style: const TextStyle(
+                                      fontFamily: 'bold', fontSize: 14))
+                            ]),
+                        value.paymentAPICalled == false
+                            ? SizedBox(
+                                height: 300,
+                                child: SkeletonListView(itemCount: 5))
+                            : const SizedBox(),
                         Column(
                           children: List.generate(
                             value.paymentList.length,
                             (index) => InkWell(
-                              onTap: () => value.selectPaymentMethod(value.paymentList[index].id as int),
+                              onTap: () => value.selectPaymentMethod(
+                                  value.paymentList[index].id as int),
                               child: Container(
                                 width: double.infinity,
                                 margin: const EdgeInsets.symmetric(vertical: 5),
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: ThemeProvider.whiteColor,
-                                  boxShadow: const [BoxShadow(color: ThemeProvider.greyColor, blurRadius: 5.0, offset: Offset(0.7, 2.0))],
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: ThemeProvider.greyColor,
+                                        blurRadius: 5.0,
+                                        offset: Offset(0.7, 2.0))
+                                  ],
                                 ),
                                 child: Row(
                                   children: [
                                     CircleAvatar(
-                                      backgroundColor: ThemeProvider.transparent,
+                                      backgroundColor:
+                                          ThemeProvider.transparent,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(5),
                                         child: SizedBox.fromSize(
                                           size: const Size.fromRadius(20),
                                           child: FadeInImage(
-                                            image: NetworkImage('${Environments.apiBaseURL}storage/images/${value.paymentList[index].cover}'),
-                                            placeholder: const AssetImage("assets/images/placeholder.jpeg"),
-                                            imageErrorBuilder: (context, error, stackTrace) {
-                                              return Image.asset('assets/images/notfound.png', fit: BoxFit.cover);
+                                            image: NetworkImage(
+                                                '${Environments.apiBaseURL}storage/images/${value.paymentList[index].cover}'),
+                                            placeholder: const AssetImage(
+                                                "assets/images/placeholder.jpeg"),
+                                            imageErrorBuilder:
+                                                (context, error, stackTrace) {
+                                              return Image.asset(
+                                                  'assets/images/notfound.png',
+                                                  fit: BoxFit.cover);
                                             },
                                             fit: BoxFit.cover,
                                           ),
@@ -307,12 +439,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 20),
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(value.paymentList[index].name.toString(), style: const TextStyle(fontSize: 14)),
-                                            Icon(value.paymentList[index].id == value.paymentId ? Icons.check_circle : Icons.circle_outlined)
+                                            Text(
+                                                value.paymentList[index].name
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                    fontSize: 14)),
+                                            Icon(value.paymentList[index].id ==
+                                                    value.paymentId
+                                                ? Icons.check_circle
+                                                : Icons.circle_outlined)
                                           ],
                                         ),
                                       ),
@@ -322,7 +463,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ),
                             ),
                           ),
-                        )
+                        ),
+                        Text(
+                          'Loyalty Points: ${Get.find<PaymentController>().loyaltyPoints}',
+                          style:
+                              const TextStyle(fontFamily: 'bold', fontSize: 14),
+                        ),
                       ],
                     ),
                   ),
@@ -335,10 +481,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 value.appointmentsTo == 1
                     ? ListTile(
                         onTap: () => value.onSelectAddress(),
-                        visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+                        visualDensity:
+                            const VisualDensity(horizontal: 0, vertical: -4),
                         leading: const Icon(Icons.location_on, size: 14),
                         minLeadingWidth: 0,
-                        title: value.haveAddress == true ? Text('${value.addressInfo.address} ${value.addressInfo.landmark}', style: const TextStyle(fontSize: 14)) : Text('Please Add Your Address'.tr),
+                        title: value.haveAddress == true
+                            ? Text(
+                                '${value.addressInfo.address} ${value.addressInfo.landmark}',
+                                style: const TextStyle(fontSize: 14))
+                            : Text('Please Add Your Address'.tr),
                         trailing: const Icon(
                           Icons.edit_outlined,
                           size: 14,
@@ -348,10 +499,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 value.apiCalled == true
                     ? ListTile(
                         onTap: () => value.onBack(),
-                        visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+                        visualDensity:
+                            const VisualDensity(horizontal: 0, vertical: -4),
                         leading: const Icon(Icons.access_time_sharp, size: 14),
                         minLeadingWidth: 0,
-                        title: Text('${Get.find<SlotController>().savedDate} ${Get.find<SlotController>().selectedSlotIndex}', style: const TextStyle(fontSize: 14)),
+                        title: Text(
+                            '${Get.find<SlotController>().savedDate} ${Get.find<SlotController>().selectedSlotIndex}',
+                            style: const TextStyle(fontSize: 14)),
                         trailing: const Icon(Icons.edit_outlined, size: 14),
                       )
                     : const SizedBox(),
@@ -369,12 +523,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               shadowColor: ThemeProvider.blackColor,
                               foregroundColor: ThemeProvider.whiteColor,
                               elevation: 3,
-                              shape: (RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
+                              shape: (RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6))),
                               padding: const EdgeInsets.all(0),
                             ),
                             child: Text(
-                              value.currencySide == 'left' ? '${'Pay'} ${value.currencySymbol}${value.grandTotal}' : '${'Pay'} ${value.grandTotal}${value.currencySymbol}',
-                              style: const TextStyle(letterSpacing: 1, fontSize: 16, color: ThemeProvider.whiteColor, fontFamily: 'bold'),
+                              value.currencySide == 'left'
+                                  ? '${'Pay'} ${value.currencySymbol}${value.grandTotal}'
+                                  : '${'Pay'} ${value.grandTotal}${value.currencySymbol}',
+                              style: const TextStyle(
+                                  letterSpacing: 1,
+                                  fontSize: 16,
+                                  color: ThemeProvider.whiteColor,
+                                  fontFamily: 'bold'),
                             ),
                           ),
                         ),

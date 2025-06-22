@@ -33,7 +33,7 @@ class _TopOffersScreenState extends State<TopOffersScreen> {
             iconTheme: const IconThemeData(color: ThemeProvider.whiteColor),
             titleSpacing: 0,
             centerTitle: true,
-            title: Text('Top Salon'.tr, style: ThemeProvider.titleStyle),
+            title: Text('Top Massage Center'.tr, style: ThemeProvider.titleStyle),
           ),
           body: value.apiCalled == false
               ? SingleChildScrollView(

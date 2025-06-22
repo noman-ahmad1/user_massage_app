@@ -162,6 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           initialSelection: 'IN',
                                           favorite: const ['+91', 'IN'],
                                           showCountryOnly: false,
+                                          flagWidth: 28,
+                                          padding: EdgeInsets.zero,
                                           showOnlyCountryWhenClosed: false,
                                           alignLeft: false,
                                         ),

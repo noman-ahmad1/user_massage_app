@@ -52,7 +52,7 @@ class RegisterController extends GetxController implements GetxService {
     super.onInit();
     currencySide = parser.getCurrencySide();
     currencySymbol = parser.getCurrencySymbol();
-    smsName = parser.getSMSName();
+    // smsName = parser.getSMSName();
     verificationMethod = parser.getVerificationMethod();
     debugPrint('smsname$smsName');
     debugPrint('verification method$verificationMethod');
@@ -76,6 +76,7 @@ class RegisterController extends GetxController implements GetxService {
       showToast('Email is not valid'.tr);
       return;
     }
+    print(verificationMethod.toString());
     if (verificationMethod == 0) {
       debugPrint('email verification'.tr);
       var param = {
@@ -256,7 +257,7 @@ class RegisterController extends GetxController implements GetxService {
                   const SizedBox(height: 10),
                   OtpTextField(
                     numberOfFields: 6,
-                    borderColor: ThemeProvider.greyColor,
+                    borderColor: ThemeProvider.secondaryAppColor,
                     keyboardType: TextInputType.number,
                     focusedBorderColor: ThemeProvider.appColor,
                     showFieldAsBox: true,

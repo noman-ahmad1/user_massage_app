@@ -39,6 +39,7 @@ import 'package:user/app/backend/binding/individual_slot_binding.dart';
 import 'package:user/app/backend/binding/intro_binding.dart';
 import 'package:user/app/backend/binding/languages_binding.dart';
 import 'package:user/app/backend/binding/login_binding.dart';
+import 'package:user/app/backend/binding/loyalty_points_binding.dart';
 import 'package:user/app/backend/binding/near_binding.dart';
 import 'package:user/app/backend/binding/new_address_binding.dart';
 import 'package:user/app/backend/binding/packages_details_binding.dart';
@@ -67,6 +68,7 @@ import 'package:user/app/backend/binding/wallet_binding.dart';
 import 'package:user/app/backend/binding/web_payment_binding.dart';
 import 'package:user/app/backend/binding/web_product_payment_binding.dart';
 import 'package:user/app/backend/binding/welcome_binding.dart';
+import 'package:user/app/backend/binding/feedback_binding.dart';
 import 'package:user/app/view/account.dart';
 import 'package:user/app/view/account_chat.dart';
 import 'package:user/app/view/add_review.dart';
@@ -87,6 +89,7 @@ import 'package:user/app/view/contact_us.dart';
 import 'package:user/app/view/coupon.dart';
 import 'package:user/app/view/edit_profile.dart';
 import 'package:user/app/view/error.dart';
+import 'package:user/app/view/feedback.dart';
 import 'package:user/app/view/filter.dart';
 import 'package:user/app/view/find_location.dart';
 import 'package:user/app/view/firebase.dart';
@@ -100,6 +103,7 @@ import 'package:user/app/view/individual_slot.dart';
 import 'package:user/app/view/intro.dart';
 import 'package:user/app/view/languages.dart';
 import 'package:user/app/view/login.dart';
+import 'package:user/app/view/loyalty_points.dart';
 import 'package:user/app/view/near.dart';
 import 'package:user/app/view/new_address.dart';
 import 'package:user/app/view/packages_details.dart';
@@ -191,6 +195,8 @@ class AppRouter {
   static const String topProducts = '/top_products';
   static const String addReviewsRoutes = '/add_review';
   static const String complaintsRoutes = '/complaints';
+  static const String feedbackRoutes = '/feedback';
+  static const String loyaltyPointsRoutes = '/loyalty_points';
 
   static String getInitialRoute() => initial;
   static String getSplashRoute() => splash;
@@ -253,6 +259,7 @@ class AppRouter {
   static String getTopProductsRoutes() => topProducts;
   static String getAddReviewsRoutes() => addReviewsRoutes;
   static String getComplaintsRoutes() => complaintsRoutes;
+  static String getFeedbackRoutes() => feedbackRoutes;
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => const IntroScreen(), binding: IntroBinding()),
@@ -315,6 +322,8 @@ class AppRouter {
     GetPage(name: editProfile, page: () => const EditProfileScreen(), binding: EditProfileBindings()),
     GetPage(name: topProducts, page: () => const TopProductScreen(), binding: TopProductsBinding()),
     GetPage(name: addReviewsRoutes, page: () => const AddReviewScreen(), binding: AddReviewBinding(), fullscreenDialog: true),
-    GetPage(name: complaintsRoutes, page: () => const ComplaintScreen(), binding: ComplaintsBinding(), fullscreenDialog: true)
+    GetPage(name: complaintsRoutes, page: () => const ComplaintScreen(), binding: ComplaintsBinding(), fullscreenDialog: true),
+    GetPage(name: feedbackRoutes, page: () => const FeedbackScreen(), binding: FeedbackBinding(), fullscreenDialog: true),
+    GetPage(name: loyaltyPointsRoutes, page: () => const LoyaltyPointsScreen(), binding: LoyaltyPointsBinding(), fullscreenDialog: true)
   ];
 }

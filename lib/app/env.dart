@@ -7,9 +7,10 @@
   Copyright and Good Faith Purchasers © 2025-present initappz.
 */
 class Environments {
-  static const String appName = 'Ultimate Salon & Shop';
-  static const String companyName = 'Initappz';
-  static const String googleMapsKey = 'GOOGLE-MAPS-KEY';
-  static const String apiBaseURL = 'http://188.166.182.122/';
+  static const String appName = 'Sabai Dee';
+  static const String companyName = 'Sabai Dee';
+  // static const String googleMapsKey = 'GOOGLE-MAPS-KEY';
+  static const String googleMapsKey = 'AIzaSyAG4n9r0CR1tvPjZFYB5qzDxHau09grNO0';
+  static const String apiBaseURL = 'https://api.youtaicosmetic.net/';
   static const String websiteURL = 'https://multi-salon.initappz.com/';
 }

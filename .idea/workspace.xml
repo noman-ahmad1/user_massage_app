@@ -1,36 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
   </component>
-  <component name="ToolWindowManager">
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-    </layout>
+  <component name="ChangeListManager">
+    <list default="true" id="9732ee1a-fac0-47bd-ada6-698f4e6e85db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metadata" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/x86/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/3d5q2f1r/x86_64/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/login.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/login.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/logo_white.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/logo_white.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/backend/api/api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/backend/api/api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/backend/models/services_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/backend/models/services_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/backend/parse/add_review_parse.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/backend/parse/add_review_parse.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/backend/parse/payment_parse.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/backend/parse/payment_parse.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/backend/parse/slot_parse.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/backend/parse/slot_parse.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/add_review_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/add_review_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/appointment_detail_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/appointment_detail_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/find_location_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/find_location_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/individual_payment_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/individual_payment_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/payment_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/payment_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/product_order_detail_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/product_order_detail_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/register_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/register_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/selected_services_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/selected_services_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controller/slot_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controller/slot_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/env.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/env.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/helper/init.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/helper/init.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/helper/router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/helper/router.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/util/constant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/util/constant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/util/theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/util/theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/util/translator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/util/translator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/account.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/appointment_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/appointment_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/contact_us.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/contact_us.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/find_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/find_location.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/individual_packages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/individual_packages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/near.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/near.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/new_address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/new_address.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/packages_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/packages_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/payment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/payment.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/search.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/search.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/selected_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/selected_services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/sidemenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/sidemenu.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/slot.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/slot.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/specialist.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/specialist.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/splash.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/splash.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/top_offers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/top_offers.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/welcome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/welcome.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2x3Ei1idHzyS1KA9mEYGYS72Vka" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-    </navigator>
+    <navigator currentView="ProjectPane" proportions="" version="1" />
     <panes>
       <pane id="ProjectPane">
         <option name="show-excluded-files" value="false" />
       </pane>
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9732ee1a-fac0-47bd-ada6-698f4e6e85db" name="Changes" comment="" />
+      <created>1747158481931</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747158481931</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+    </layout>
   </component>
 </project>

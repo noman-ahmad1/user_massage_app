@@ -58,13 +58,13 @@ class SlotController extends GetxController implements GetxService {
         uid = Get.find<CheckoutController>().savedInCart.packages![0].uid.toString();
       }
 
-      var dayName = Jiffy.now().format(pattern: "EEEE"); // Tuesday
-      debugPrint(dayName);
-      int index = dayList.indexOf(dayName);
-      var date = Jiffy.now().format(pattern: 'yyyy-MM-dd');
-      savedDate = date;
+      // var dayName = Jiffy.now().format(pattern: "EEEE"); // Tuesday
+      // debugPrint(dayName);
+      // int index = dayList.indexOf(dayName);
+      // var date = Jiffy.now().format(pattern: 'yyyy-MM-dd');
+      // savedDate = date;
       update();
-      getSlotsForBookings(index, date);
+     
     } else {
       onBack();
     }
@@ -93,34 +93,71 @@ class SlotController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> getSlotsForBookings(int index, String date) async {
-    var response = await parser.getSlots({"week_id": index, "date": date, "uid": uid, "from": "salon"});
-    apiCalled = true;
+  Future<void> getSlotsForBookings(int index, String date, String specialistId) async {
+  _slotList = SlotModel();
+  bookedSlots = [];
+  haveData = false;
+  update();
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
-      var body = myMap['data'];
-      var booked = myMap['bookedSlots'];
-      _slotList = SlotModel();
-      if (body != null) {
-        haveData = true;
-        SlotModel datas = SlotModel.fromJson(body);
-        _slotList = datas;
-        update();
-      }
+  var response = await parser.getSlots({
+    "week_id": index,
+    "date": date,
+    "uid": uid,
+    "from": "salon",
+    "specialist_id": specialistId
+  });
 
-      if (booked != null) {
-        bookedSlots = [];
-        booked.forEach((element) {
-          BookedSlotModel slot = BookedSlotModel.fromJson(element);
-          bookedSlots.add(slot.slot.toString());
-        });
-      }
-    } else {
-      ApiChecker.checkApi(response);
+  apiCalled = true;
+
+  if (response.statusCode == 200) {
+    Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
+    var body = myMap['data'];
+    var booked = myMap['bookedSlots'];
+
+    if (body != null) {
+      SlotModel datas = SlotModel.fromJson(body);
+      _slotList = datas;
+      haveData = true;
     }
-    update();
+
+    if (booked != null) {
+      bookedSlots = List<String>.from(booked.map((e) => BookedSlotModel.fromJson(e).slot.toString()));
+    }
+  } else {
+    ApiChecker.checkApi(response);
   }
+
+  update();
+}
+
+  // Future<void> getSlotsForBookings(int index, String date, String specialistId) async {
+  //   var response = await parser.getSlots({"week_id": index, "date": date, "uid": uid, "from": "salon", "specialist_id": specialistId});
+  //   apiCalled = true;
+
+  //   if (response.statusCode == 200) {
+  //     Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
+  //     var body = myMap['data'];
+  //     var booked = myMap['bookedSlots'];
+  //     _slotList = SlotModel();
+  //     if (body != null) {
+  //       haveData = true;
+  //       SlotModel datas = SlotModel.fromJson(body);
+  //       _slotList = datas;
+  //       update();
+  //     }
+
+  //     if (booked != null) {
+  //       bookedSlots = [];
+  //       booked.forEach((element) {
+  //         BookedSlotModel slot = BookedSlotModel.fromJson(element);
+  //         bookedSlots.add(slot.slot.toString());
+  //       });
+  //     }
+  //   } else {
+  //     ApiChecker.checkApi(response);
+  //   }
+  //   update();
+  // }
 
   Color getColor(Set<WidgetState> states) {
     return ThemeProvider.appColor;
@@ -143,18 +180,33 @@ class SlotController extends GetxController implements GetxService {
   }
 
   void onDateChange(DateTime date) {
-    selectedSlotIndex = '';
-    haveData = false;
-    debugPrint(date.toString());
-    var dayName = Jiffy.parse(date.toString()).format(pattern: "EEEE");
-    var selectedDate = Jiffy.parse(date.toString()).format(pattern: 'yyyy-MM-dd');
-    savedDate = selectedDate;
-    update();
-    debugPrint(dayName);
-    int index = dayList.indexOf(dayName);
-    debugPrint(index.toString());
-    getSlotsForBookings(index, selectedDate);
-  }
+  selectedSlotIndex = '';
+  haveData = false;
+  selectedValue = date;
+  update();
+
+  String dayName = Jiffy.parse(date.toString()).format(pattern: "EEEE");
+  String selectedDate = Jiffy.parse(date.toString()).format(pattern: 'yyyy-MM-dd');
+  savedDate = selectedDate;
+
+  int index = dayList.indexOf(dayName);
+
+  getSlotsForBookings(index, selectedDate, selectedSpecialist);
+}
+
+  // void onDateChange(DateTime date) {
+  //   selectedSlotIndex = '';
+  //   haveData = false;
+  //   debugPrint(date.toString());
+  //   var dayName = Jiffy.parse(date.toString()).format(pattern: "EEEE");
+  //   var selectedDate = Jiffy.parse(date.toString()).format(pattern: 'yyyy-MM-dd');
+  //   savedDate = selectedDate;
+  //   update();
+  //   debugPrint(dayName);
+  //   int index = dayList.indexOf(dayName);
+  //   debugPrint(index.toString());
+  //   getSlotsForBookings(index, selectedDate, selectedSpecialist);
+  // }
 
   void onPayment() {
     if (selectedSlotIndex == '') {
@@ -170,8 +222,33 @@ class SlotController extends GetxController implements GetxService {
   }
 
   void saveSpecialist(int id) {
-    debugPrint(id.toString());
-    selectedSpecialist = id.toString();
-    update();
-  }
+  debugPrint(id.toString());
+  selectedSpecialist = id.toString();
+
+  String targetDate = savedDate.isNotEmpty
+      ? savedDate
+      : Jiffy.now().format(pattern: 'yyyy-MM-dd');
+
+  String dayName = Jiffy.parse(targetDate).format(pattern: "EEEE");
+  int index = dayList.indexOf(dayName);
+
+  haveData = false; // Reset before fetching
+  selectedSlotIndex = '';
+  update();
+
+  getSlotsForBookings(index, targetDate, selectedSpecialist);
+}
+
+
+  // void saveSpecialist(int id) {
+  //   debugPrint(id.toString());
+  //    var dayName = Jiffy.now().format(pattern: "EEEE"); // Tuesday
+  //     debugPrint(dayName);
+  //     int index = dayList.indexOf(dayName);
+  //     var date = Jiffy.now().format(pattern: 'yyyy-MM-dd');
+  //     savedDate = date;
+  //   selectedSpecialist = id.toString();
+  //    getSlotsForBookings(index, date, selectedSpecialist);
+  //   update();
+  // }
 }

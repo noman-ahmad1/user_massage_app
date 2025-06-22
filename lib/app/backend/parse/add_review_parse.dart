@@ -25,6 +25,10 @@ class AddReviewParser {
     var response = await apiService.postPrivate(AppConstants.getOwnerReviews, body, sharedPreferencesManager.getString('token') ?? '');
     return response;
   }
+  Future<Response> getSpecialistReviews(var body) async {
+    var response = await apiService.postPrivate(AppConstants.getSpecialistReviews, body, sharedPreferencesManager.getString('token') ?? '');
+    return response;
+  }
 
   Future<Response> getProductsReviews(var body) async {
     var response = await apiService.postPrivate(AppConstants.getProductsReview, body, sharedPreferencesManager.getString('token') ?? '');
@@ -33,6 +37,10 @@ class AddReviewParser {
 
   Future<Response> saveOwnerReview(var body) async {
     var response = await apiService.postPrivate(AppConstants.saveOwnerReview, body, sharedPreferencesManager.getString('token') ?? '');
+    return response;
+  }
+  Future<Response> saveSpecialistReview(var body) async {
+    var response = await apiService.postPrivate(AppConstants.saveSpecialistReview, body, sharedPreferencesManager.getString('token') ?? '');
     return response;
   }
 
@@ -53,6 +61,10 @@ class AddReviewParser {
 
   Future<Response> updateOwnerReview(var body) async {
     var response = await apiService.postPrivate(AppConstants.updateOwnerReview, body, sharedPreferencesManager.getString('token') ?? '');
+    return response;
+  }
+  Future<Response> updateSpecialistReview(var body) async {
+    var response = await apiService.postPrivate(AppConstants.updateSpecialistReview, body, sharedPreferencesManager.getString('token') ?? '');
     return response;
   }
 

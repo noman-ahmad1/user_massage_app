@@ -78,7 +78,7 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (value) {
         return Scaffold(
           body: Stack(alignment: AlignmentDirectional.center, children: [
-            const Image(image: AssetImage('assets/images/splash.png'), fit: BoxFit.cover, height: double.infinity, width: double.infinity, alignment: Alignment.center),
+            const Image(image: AssetImage('assets/images/splash.jpg'), fit: BoxFit.cover, height: double.infinity, width: double.infinity, alignment: Alignment.center),
             const Positioned(top: 100, child: Image(image: AssetImage('assets/images/logo_white.png'), fit: BoxFit.cover, height: 50, width: 50, alignment: Alignment.center)),
             const Positioned(top: 180, child: Center(child: Text(Environments.appName, style: TextStyle(color: ThemeProvider.whiteColor, fontFamily: 'bold')))),
             const Positioned(bottom: 50, child: Center(child: CircularProgressIndicator(color: ThemeProvider.whiteColor))),

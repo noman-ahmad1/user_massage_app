@@ -27,6 +27,7 @@ import 'package:user/app/backend/parse/contact_us_parse.dart';
 import 'package:user/app/backend/parse/coupon_parse.dart';
 import 'package:user/app/backend/parse/edit_profile_parse.dart';
 import 'package:user/app/backend/parse/favorite_parse.dart';
+import 'package:user/app/backend/parse/feedback_parse.dart';
 import 'package:user/app/backend/parse/filter_parse.dart';
 import 'package:user/app/backend/parse/find_location_parse.dart';
 import 'package:user/app/backend/parse/firebase_parse.dart';
@@ -132,6 +133,8 @@ class MainBinding extends Bindings {
     Get.lazyPut(() => SpecialistParser(apiService: Get.find(), sharedPreferencesManager: Get.find()), fenix: true);
 
     Get.lazyPut(() => AppointmentDetailParser(apiService: Get.find(), sharedPreferencesManager: Get.find()), fenix: true);
+
+        Get.lazyPut(() => FeedbackParser(apiService: Get.find(), sharedPreferencesManager: Get.find()), fenix: true);
 
     Get.lazyPut(() => AddressParser(apiService: Get.find(), sharedPreferencesManager: Get.find()), fenix: true);
 

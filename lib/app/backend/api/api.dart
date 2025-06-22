@@ -1,11 +1,3 @@
-/*
-  Authors : initappz (Rahul Jograna)
-  Website : https://initappz.com/
-  App Name : Ultimate Salon Full App Flutter V8
-  This App Template Source code is licensed as per the
-  terms found in the Website https://initappz.com/license
-  Copyright and Good Faith Purchasers © 2025-present initappz.
-*/
 import 'dart:convert';
 import 'dart:io';
 import 'package:get/get.dart';
@@ -23,7 +15,7 @@ class ApiService extends GetxService {
       http.Response response = await http.get(Uri.parse(appBaseUrl + uri)).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -32,7 +24,7 @@ class ApiService extends GetxService {
       http.Response response = await http.get(Uri.parse(uri)).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -41,7 +33,7 @@ class ApiService extends GetxService {
       http.Response response = await http.get(Uri.parse(uri)).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -50,7 +42,7 @@ class ApiService extends GetxService {
       http.Response response = await http.get(Uri.parse(appBaseUrl + uri), headers: {'Content-Type': 'application/json;', 'Authorization': 'Bearer $token'}).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -64,7 +56,7 @@ class ApiService extends GetxService {
       http.Response response = await http.Response.fromStream(await request.send());
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -74,7 +66,7 @@ class ApiService extends GetxService {
       http.Response response = await http.post(Uri.parse(appBaseUrl + uri), headers: {"Content-Type": "application/json"}, body: jsonEncode(body)).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, appBaseUrl + uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -83,16 +75,17 @@ class ApiService extends GetxService {
       http.Response response = await http.post(Uri.parse(appBaseUrl + uri), body: jsonEncode(body), headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'}).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
   Future<Response> logout(String uri, String token) async {
     try {
-      http.Response response = await http.post(Uri.parse(appBaseUrl + uri), headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'}).timeout(Duration(seconds: timeoutInSeconds));
+      print("Logging out with token: $token");
+      http.Response response = await http.post(Uri.parse(appBaseUrl + uri), headers: {'Content-Type': 'application/json','Accept': 'application/json', 'Authorization': 'Bearer $token'}).timeout(Duration(seconds: timeoutInSeconds));
       return parseResponse(response, uri);
     } catch (e) {
-      return const Response(statusCode: 1, statusText: connectionIssue);
+      return  Response(statusCode: 1, statusText: "$uri ${e.toString()}");
     }
   }
 
@@ -111,7 +104,7 @@ class ApiService extends GetxService {
         response = Response(statusCode: response.statusCode, body: response.body, statusText: response.body['message']);
       }
     } else if (response.statusCode != 200 && response.body == null) {
-      response = const Response(statusCode: 0, statusText: connectionIssue);
+      response =  Response(statusCode: 0, statusText: "${response.statusCode} $uri ");
     }
     return response;
   }

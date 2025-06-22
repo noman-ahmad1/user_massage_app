@@ -6,6 +6,7 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2025-present initappz.
 */
+import 'package:flutter/material.dart';
 import 'package:user/app/backend/api/api.dart';
 import 'package:user/app/helper/shared_pref.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,16 @@ class PaymentParser {
 
   Future<Response> createAppoinments(var body) async {
     return await apiService.postPrivate(AppConstants.createAppointments, body, sharedPreferencesManager.getString('token') ?? '');
+  }
+  Future<Response> deductLoyaltyPoints(var body) async {
+    return await apiService.postPrivate(AppConstants.deductloyaltyPoints, body, sharedPreferencesManager.getString('token') ?? '');
+  }
+  Future<Response> saveLoyaltyPoints(var body) async {
+    // body['user_id'] = sharedPreferencesManager.getString('userId') ?? '';
+    return await apiService.postPrivate(AppConstants.saveloyaltyPoints, body, sharedPreferencesManager.getString('token') ?? '');
+  }
+  Future<Response> fetchLoyaltyPoints(var body) async {
+    return await apiService.postPrivate(AppConstants.fetchloyaltyPoints, body, sharedPreferencesManager.getString('token') ?? '');
   }
 
   Future<Response> sendNotification(var body) async {

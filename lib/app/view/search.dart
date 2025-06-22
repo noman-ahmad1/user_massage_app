@@ -76,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 onChanged: value.searchProducts,
                                 style: const TextStyle(color: ThemeProvider.blackColor),
                                 decoration: InputDecoration(
-                                  hintText: 'Search For Salon, Services.....'.tr,
+                                  hintText: 'Search For Massage Services.....'.tr,
                                   prefixIcon: const Icon(Icons.search),
                                   hintStyle: const TextStyle(color: ThemeProvider.greyColor),
                                   border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide(color: ThemeProvider.whiteColor)),
@@ -145,7 +145,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     ),
                                   ),
                                 ),
-                                value.salonList.isNotEmpty ? _buildTitle('Salons'.tr) : const SizedBox(),
+                                value.salonList.isNotEmpty ? _buildTitle('Massage Centers'.tr) : const SizedBox(),
                                 Column(
                                   children: [
                                     Container(

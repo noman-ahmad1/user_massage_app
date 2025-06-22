@@ -34,18 +34,68 @@ class FindLocationController extends GetxController implements GetxService {
   List<GooglePlacesModel> _getList = <GooglePlacesModel>[];
   List<GooglePlacesModel> get getList => _getList;
 
-  double myLat = 21.5397106;
-  double myLng = 71.8215543;
+  double myLat = 13.724381;
+  double myLng = 100.3034506;
 
   bool isConfirmed = false;
+
+  LatLng selectedLatLng = LatLng(13.724381, 100.3034506);
 
   FindLocationController({required this.parser});
 
   @override
   void onInit() {
     super.onInit();
-    var pinPosition = LatLng(myLat, myLng);
-    markers.add(Marker(markerId: const MarkerId('sourcePin'), position: pinPosition));
+    selectedLatLng = LatLng(myLat, myLng);
+    updateMarkerPosition(selectedLatLng);
+  }
+
+  void onMarkerDragEnd(LatLng position) {
+  selectedLatLng = position;
+    isConfirmed = true;
+    getAddressFromLatLng(position);
+    update();
+}
+
+Future<void> getAddressFromLatLng(LatLng position) async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks.first;
+        String address = [
+          place.name,
+          place.street,
+          place.locality,
+          place.administrativeArea,
+          place.postalCode,
+          place.country
+        ].where((part) => part?.isNotEmpty ?? false).join(', ');
+        searchbarText.text = address;
+        update();
+      }
+    } catch (e) {
+      debugPrint('Error getting address: $e');
+    }
+  }
+
+void updateMarkerPosition(LatLng position) {
+  selectedLatLng = position;
+  isConfirmed = true;
+    markers.clear();
+    markers.add(
+      Marker(
+        markerId: const MarkerId('selected-location'),
+        position: position,
+        draggable: true,
+        onDragEnd: (newPosition) {
+          onMarkerDragEnd(newPosition);
+        },
+      ),
+    );
+    update();
   }
 
   void getLocation() async {
@@ -114,9 +164,20 @@ class FindLocationController extends GetxController implements GetxService {
   }
 
   void onMapCreated(GoogleMapController controller) {
-    markers.add(const Marker(markerId: MarkerId('Id-1'), position: LatLng(21.5397106, 71.8215543)));
-    update();
-  }
+    updateMarkerPosition(selectedLatLng);
+  // selectedLatLng = LatLng(myLat, myLng); // Initialize the selected location
+  // markers.add(
+  //   Marker(
+  //     markerId: const MarkerId('selected-location'),
+  //     position: selectedLatLng,
+  //     draggable: true,
+  //     onDragEnd: (newPosition) {
+  //       onMarkerDragEnd(newPosition); // Update the selected location
+  //     },
+  //   ),
+  // );
+  // update();
+}
 
   void onSearchChanged(String value) {
     debugPrint(value);
@@ -151,22 +212,22 @@ class FindLocationController extends GetxController implements GetxService {
 
   Future<void> getLatLngFromAddress(String address) async {
     List<Location> locations = await locationFromAddress(address);
-    debugPrint(locations.toString());
     if (locations.isNotEmpty) {
       _getList = [];
       searchbarText.text = address;
-      myLat = locations[0].latitude;
-      myLng = locations[0].longitude;
+      selectedLatLng = LatLng(locations[0].latitude, locations[0].longitude);
       isConfirmed = true;
-      var pinPosition = LatLng(myLat, myLng);
-      markers.removeWhere((m) => m.markerId.value == 'sourcePin');
-      markers.add(Marker(markerId: const MarkerId('sourcePin'), position: pinPosition));
-      update();
+      updateMarkerPosition(selectedLatLng);
     }
   }
 
   void onConfirmLocation() {
-    parser.saveLatLng(myLat, myLng, searchbarText.text);
+    parser.saveLatLng(
+      selectedLatLng.latitude,
+      selectedLatLng.longitude,
+      searchbarText.text,
+    );
+    // parser.saveLatLng(myLat, myLng, searchbarText.text);
     Get.delete<TabsController>(force: true);
     Get.delete<HomeController>(force: true);
     Get.delete<NearController>(force: true);
@@ -176,3 +237,5 @@ class FindLocationController extends GetxController implements GetxService {
     Get.offAndToNamed(AppRouter.getTabsBarRoute());
   }
 }
+
+

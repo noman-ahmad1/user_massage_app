@@ -72,6 +72,24 @@ class AddReviewController extends GetxController implements GetxService {
     }
   }
 
+  Future<void> getSpecialistReviews() async {
+    Response response = await parser.getSpecialistReviews({"id": id});
+    apiCalled = true;
+    update();
+    if (response.statusCode == 200) {
+      Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
+      dynamic reviews = myMap["data"];
+      rating = [];
+      reviews.forEach((element) {
+        rating.add(double.parse(element['rating'].toString()));
+      });
+      debugPrint(rating.length.toString());
+    } else {
+      ApiChecker.checkApi(response);
+      update();
+    }
+  }
+
   Future<void> getProductsReviews() async {
     Response response = await parser.getProductsReviews({"id": id});
     apiCalled = true;
@@ -217,6 +235,46 @@ class AddReviewController extends GetxController implements GetxService {
       if (response.statusCode == 200) {
         var updateParam = {"id": id, 'total_rating': rating.length, 'rating': average.toStringAsFixed(2)};
         await parser.updateOwnerReview(updateParam);
+        successToast('Review Saved'.tr);
+        onBack();
+      } else {
+        ApiChecker.checkApi(response);
+        update();
+      }
+    }
+  }
+    Future<void> saveSpecialistReview() async {
+    rating.add(double.parse(rate.toString()));
+    List<double> ratings = rating.map((e) => e!).cast<double>().toList();
+    double sum = ratings.fold(0, (p, c) => p + c);
+    if (sum > 0) {
+      double average = sum / ratings.length;
+      debugPrint(rate.toString());
+
+      debugPrint(notesEditor.text);
+      var param = {"uid": parser.getUID(), "specialist_id": id, "notes": notesEditor.text, "rating": rate, "status": 1};
+      Get.dialog(
+        SimpleDialog(
+          children: [
+            Row(
+              children: [
+                const SizedBox(width: 30),
+                const CircularProgressIndicator(color: ThemeProvider.appColor),
+                const SizedBox(width: 30),
+                SizedBox(child: Text("Please wait".tr, style: const TextStyle(fontFamily: 'bold'))),
+              ],
+            )
+          ],
+        ),
+        barrierDismissible: false,
+      );
+      Response response = await parser.saveSpecialistReview(param);
+      Get.back();
+      apiCalled = true;
+      update();
+      if (response.statusCode == 200) {
+        var updateParam = {"id": id, 'total_rating': rating.length, 'rating': average.toStringAsFixed(2)};
+        await parser.updateSpecialistReview(updateParam);
         successToast('Review Saved'.tr);
         onBack();
       } else {

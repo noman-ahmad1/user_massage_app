@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 const typeTheme = Typography.whiteMountainView;
 
 class ThemeProvider {
-  static const appColor = Color.fromARGB(229, 52, 1, 255);
-  static const secondaryAppColor = Color.fromARGB(255, 35, 74, 214);
+  static const appColor = Color.fromARGB(255, 1, 112, 112);
+  static const secondaryAppColor = Color(0xFF008080);
   static const whiteColor = Colors.white;
   static const blackColor = Color(0xFF000000);
   static const greyColor = Colors.grey;
@@ -21,7 +21,7 @@ class ThemeProvider {
   static const greenColor = Color(0xFF32CD32);
   static const redColor = Color(0xFFFF0000);
   static const transparent = Color.fromARGB(0, 0, 0, 0);
-  static const titleStyle = TextStyle(fontFamily: 'bold', fontSize: 14, color: ThemeProvider.whiteColor);
+  static const titleStyle = TextStyle(fontFamily: 'bold', fontSize: 20, color: ThemeProvider.whiteColor);
 }
 
 TextTheme txtTheme = Typography.whiteMountainView.copyWith(

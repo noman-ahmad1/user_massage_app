@@ -1,0 +1,2 @@
+/Users/mac/Downloads/App_source_code_v8/User_app/android/app/.cxx/RelWithDebInfo/6n513j4e/x86/CMakeFiles/edit_cache.dir
+/Users/mac/Downloads/App_source_code_v8/User_app/android/app/.cxx/RelWithDebInfo/6n513j4e/x86/CMakeFiles/rebuild_cache.dir

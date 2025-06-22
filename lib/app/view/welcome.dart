@@ -25,7 +25,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          const Image(image: AssetImage('assets/images/welcome.jpg'), fit: BoxFit.cover, height: double.infinity, width: double.infinity, alignment: Alignment.center),
+          const Image(image: AssetImage('assets/images/splash.jpg'), fit: BoxFit.cover, height: double.infinity, width: double.infinity, alignment: Alignment.center),
           Positioned(
             bottom: 20,
             child: Column(
@@ -34,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 const SizedBox(height: 10),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  child: Text('Book an Appointment for Salon, Spa & Barber.'.tr, style: const TextStyle(color: ThemeProvider.whiteColor, fontFamily: 'bold', fontSize: 18)),
+                  child: Text('Book an Appointment for therapist, Spa & massage center.'.tr, style: const TextStyle(color: ThemeProvider.whiteColor, fontFamily: 'bold', fontSize: 18)),
                 ),
                 Container(
                   height: 45,

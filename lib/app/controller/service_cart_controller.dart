@@ -66,7 +66,7 @@ class ServiceCartController extends GetxController implements GetxService {
     _savedInCart.services!.addAll(parser.getServices());
     _savedInCart.packages!.addAll(parser.getPackages());
     servicesFrom = parser.getServicesFrom();
-    _orderTax = parser.taxOrderPrice();
+    // _orderTax = parser.taxOrderPrice();
     salonId = parser.getSalonId();
     _shippingPrice = parser.getShippingPrice();
     _shippingMethod = parser.getShippingMethod();

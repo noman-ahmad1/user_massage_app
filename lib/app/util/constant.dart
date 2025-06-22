@@ -17,13 +17,16 @@ class AppConstants {
   static const String defaultCurrencySymbol = '\$'; // default currency symbol
   static const String defaultLanguageApp = 'en';
   static const int defaultMakeingOrder = 0; // 0=> from multiple stores // 1 = single store only
-  static const String defaultSMSGateway = '1'; // 2 = firebase // 1 = rest
+  static const String defaultSMSGateway = '2'; // 2 = firebase // 1 = rest
   static const double defaultDeliverRadius = 50;
   static const int userLogin = 0;
   static const int defaultVerificationForSignup = 0; // 0 = email // 1= phone
   static const int defaultShippingMethod = 0;
 
   // API Routes
+  static const String deductloyaltyPoints = 'api/v1/loyalty-points/deduct';
+  static const String fetchloyaltyPoints = 'api/v1/loyalty-points/show';
+  static const String saveloyaltyPoints = 'api/v1/loyalty-points/save';
   static const String getAppSettings = 'api/v1/settings/getDefault';
   static const String onlogin = 'api/v1/auth/login';
   static const String loginWithPhonePassword = 'api/v1/auth/loginWithPhonePassword';
@@ -109,6 +112,9 @@ class AppConstants {
   static const String getOwnerReviews = 'api/v1/owner_reviews/getOwnerReviews';
   static const String saveOwnerReview = 'api/v1/owner_reviews/save';
   static const String updateOwnerReview = 'api/v1/owner_reviews/updateOwnerReviews';
+  static const String getSpecialistReviews = 'api/v1/specialist_reviews/getSpecialistReviews';
+  static const String saveSpecialistReview = 'api/v1/specialist_reviews/save';
+  static const String updateSpecialistReview = 'api/v1/specialist_reviews/updateSpecialistReviews';
 
   static const String getServiceReviews = 'api/v1/service_reviews/getServiceReview';
   static const String saveServiceReview = 'api/v1/service_reviews/save';
@@ -118,6 +124,11 @@ class AppConstants {
   static const String updateProductReviews = 'api/v1/products/update';
   static const String registerComplaints = 'api/v1/complaints/registerNewComplaints';
   static const String logout = 'api/v1/profile/logout';
+  static const String getFeedbacks = 'api/v1/feedback/get';
+  static const String submitFeedbacks = 'api/v1/feedback/post';
+  static const String getUserFeedbacks = 'api/v1/feedback/user/{id}';
+  static const String getIndividualFeedbacks = 'api/v1/feedback/individual/{id}';
+  static const String getSalonFeedbacks = 'api/v1/feedback/salon/{id}';
 
   // API Routes
 
@@ -126,5 +137,6 @@ class AppConstants {
     LanguageModel(imageUrl: '', languageName: 'عربي', countryCode: 'AE', languageCode: 'ar'),
     LanguageModel(imageUrl: '', languageName: 'हिन्दी', countryCode: 'IN', languageCode: 'hi'),
     LanguageModel(imageUrl: '', languageName: 'Español', countryCode: 'De', languageCode: 'es'),
+     LanguageModel(imageUrl: '', languageName: 'Thai', countryCode: 'TH', languageCode: 'th'),
   ];
 }

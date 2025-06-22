@@ -23,6 +23,7 @@ import 'package:user/app/controller/slot_controller.dart';
 import 'package:user/app/controller/web_payment_controller.dart';
 import 'package:user/app/env.dart';
 import 'package:user/app/helper/router.dart';
+import 'package:user/app/helper/shared_pref.dart';
 import 'package:user/app/util/constant.dart';
 import 'package:user/app/util/theme.dart';
 import 'package:user/app/util/toast.dart';
@@ -44,6 +45,8 @@ class PaymentController extends GetxController implements GetxService {
   String currencySymbol = AppConstants.defaultCurrencySymbol;
 
   final notesEditor = TextEditingController();
+
+  double loyaltyPoints = 0.0;
 
   String offerId = '';
   String offerName = '';
@@ -90,6 +93,7 @@ class PaymentController extends GetxController implements GetxService {
     getPaymentMethods();
     getMyWalletAmount();
     calculateAllCharge();
+    getLoyaltyPoints();
     currencySide = parser.getCurrencySide();
     currencySymbol = parser.getCurrencySymbol();
 
@@ -102,7 +106,10 @@ class PaymentController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
       dynamic body = myMap["data"];
-      if (body != null && body != '' && body['balance'] != null && body['balance'] != '') {
+      if (body != null &&
+          body != '' &&
+          body['balance'] != null &&
+          body['balance'] != '') {
         balance = double.tryParse(body['balance'].toString()) ?? 0.0;
         walletDiscount = double.tryParse(body['balance'].toString()) ?? 0.0;
       }
@@ -113,7 +120,8 @@ class PaymentController extends GetxController implements GetxService {
   }
 
   Future<void> getSalonDetails() async {
-    var response = await parser.salonDetails({"id": Get.find<SlotController>().uid});
+    var response =
+        await parser.salonDetails({"id": Get.find<SlotController>().uid});
     apiCalled = true;
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
@@ -205,7 +213,10 @@ class PaymentController extends GetxController implements GetxService {
     debugPrint(addressInfo.lng.toString());
 
     debugPrint(Get.find<ServiceCartController>().shippingMethod.toString());
-    if (addressInfo.lat != null && addressInfo.lng != null && salonDetails.lat != null && salonDetails.lng != null) {
+    if (addressInfo.lat != null &&
+        addressInfo.lng != null &&
+        salonDetails.lat != null &&
+        salonDetails.lng != null) {
       double storeDistance = 0.0;
       double totalMeters = 0.0;
       storeDistance = Geolocator.distanceBetween(
@@ -217,13 +228,17 @@ class PaymentController extends GetxController implements GetxService {
       totalMeters = totalMeters + storeDistance;
       double distance = double.parse((storeDistance / 1000).toStringAsFixed(2));
       debugPrint('distance$distance');
-      debugPrint('distance price${Get.find<ServiceCartController>().shippingPrice}');
-      if (distance > Get.find<ServiceCartController>().parser.getAllowedDeliveryRadius()) {
+      debugPrint(
+          'distance price${Get.find<ServiceCartController>().shippingPrice}');
+      if (distance >
+          Get.find<ServiceCartController>().parser.getAllowedDeliveryRadius()) {
         haveFairDeliveryRadius = false;
-        showToast('${'Sorry we deliver the order near to'.tr} ${Get.find<ServiceCartController>().parser.getAllowedDeliveryRadius()} KM');
+        showToast(
+            '${'Sorry we deliver the order near to'.tr} ${Get.find<ServiceCartController>().parser.getAllowedDeliveryRadius()} KM');
       } else {
         if (Get.find<ServiceCartController>().shippingMethod == 0) {
-          double distancePricer = distance * Get.find<ServiceCartController>().shippingPrice;
+          double distancePricer =
+              distance * Get.find<ServiceCartController>().shippingPrice;
           _deliveryPrice = double.parse((distancePricer).toStringAsFixed(2));
         } else {
           _deliveryPrice = Get.find<ServiceCartController>().shippingPrice;
@@ -237,7 +252,8 @@ class PaymentController extends GetxController implements GetxService {
 
   void onCoupon(String offerId, String offerName) {
     Get.delete<CouponController>(force: true);
-    Get.toNamed(AppRouter.getCouponRoutes(), arguments: ['service', offerId, offerName]);
+    Get.toNamed(AppRouter.getCouponRoutes(),
+        arguments: ['service', offerId, offerName]);
   }
 
   void updateWalletChecked(bool status) {
@@ -255,14 +271,17 @@ class PaymentController extends GetxController implements GetxService {
   }
 
   void calculateAllCharge() {
-    double totalPrice = Get.find<ServiceCartController>().totalPrice + Get.find<ServiceCartController>().orderTax + _deliveryPrice;
+    double totalPrice = Get.find<ServiceCartController>().totalPrice +
+        Get.find<ServiceCartController>().orderTax +
+        _deliveryPrice;
 
     if (_selectedCoupon.discount != null && _selectedCoupon.discount != 0) {
       double percentage(numFirst, per) {
         return (numFirst / 100) * per;
       }
 
-      _discount = percentage(Get.find<ServiceCartController>().totalPrice, _selectedCoupon.discount); // null
+      _discount = percentage(Get.find<ServiceCartController>().totalPrice,
+          _selectedCoupon.discount); // null
     }
     walletDiscount = balance;
     if (isWalletChecked == true) {
@@ -312,18 +331,22 @@ class PaymentController extends GetxController implements GetxService {
       payMethodName = 'paystack';
     } else if (paymentId == 8) {
       payMethodName = 'flutterwave';
+    } else if (paymentId == 9) {
+      payMethodName = 'Loyalty Points';
     }
     update();
   }
 
   void onSelectAddress() {
     Get.delete<AddressListController>(force: true);
-    Get.toNamed(AppRouter.getAddressList(), arguments: ['salon', selectedAddressId]);
+    Get.toNamed(AppRouter.getAddressList(),
+        arguments: ['salon', selectedAddressId]);
   }
 
   void onSaveAddress(String id) {
     selectedAddressId = id;
-    var address = _addressList.firstWhere((element) => element.id.toString() == id);
+    var address =
+        _addressList.firstWhere((element) => element.id.toString() == id);
     _addressInfo = address;
     calculateDistance();
 
@@ -341,11 +364,14 @@ class PaymentController extends GetxController implements GetxService {
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/question-mark.png', fit: BoxFit.cover, height: 80, width: 80),
+          Image.asset('assets/images/question-mark.png',
+              fit: BoxFit.cover, height: 80, width: 80),
           const SizedBox(height: 20),
-          Text('Are you sure'.tr, style: const TextStyle(fontSize: 24, fontFamily: 'semi-bold')),
+          Text('Are you sure'.tr,
+              style: const TextStyle(fontSize: 24, fontFamily: 'semi-bold')),
           const SizedBox(height: 10),
-          Text('Appoinments once placed cannot be cancelled and non-refundable'.tr),
+          Text('Appoinments once placed cannot be cancelled and non-refundable'
+              .tr),
           const SizedBox(height: 20),
           Row(
             children: [
@@ -359,9 +385,12 @@ class PaymentController extends GetxController implements GetxService {
                     foregroundColor: ThemeProvider.whiteColor,
                     backgroundColor: ThemeProvider.greyColor,
                     minimumSize: const Size.fromHeight(35),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
                   ),
-                  child: Text('Cancel'.tr, style: const TextStyle(color: ThemeProvider.whiteColor, fontSize: 14)),
+                  child: Text('Cancel'.tr,
+                      style: const TextStyle(
+                          color: ThemeProvider.whiteColor, fontSize: 14)),
                 ),
               ),
               const SizedBox(width: 10),
@@ -376,9 +405,12 @@ class PaymentController extends GetxController implements GetxService {
                     foregroundColor: ThemeProvider.whiteColor,
                     backgroundColor: ThemeProvider.appColor,
                     minimumSize: const Size.fromHeight(35),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
                   ),
-                  child: Text('Book'.tr, style: const TextStyle(color: ThemeProvider.whiteColor, fontSize: 14)),
+                  child: Text('Book'.tr,
+                      style: const TextStyle(
+                          color: ThemeProvider.whiteColor, fontSize: 14)),
                 ),
               ),
             ],
@@ -390,75 +422,138 @@ class PaymentController extends GetxController implements GetxService {
 
   void onCheckout() {
     if (paymentId == 1) {
-      createOrder();
-      // cod
-      //  Order API call
-    } else if (paymentId == 2) {
-      final int toPay = grandTotal.toInt() * 100;
-      debugPrint('Stripe Pay $payMethodName --- $toPay');
-      Get.delete<WebPaymentController>(force: true);
-      var paymentURL = AppConstants.stripeWebCheckoutLink + toPay.toString();
-      Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
-    } else if (paymentId == 3) {
-      Get.delete<WebPaymentController>(force: true);
-      var paymentURL = AppConstants.payPalPayLink + grandTotal.toString();
-      Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
-      // paypal
-    } else if (paymentId == 4) {
-      // paytm
-      Get.delete<WebPaymentController>(force: true);
-      var paymentURL = AppConstants.payTmPayLink + grandTotal.toString();
-      Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
-    } else if (paymentId == 5) {
-      // razorpay
-      Get.delete<WebPaymentController>(force: true);
-      var paymentPayLoad = {
-        'amount': double.parse((grandTotal * 100).toStringAsFixed(2)).toString(),
-        'email': parser.getEmail(),
-        'logo': '${parser.apiService.appBaseUrl}storage/images/${parser.getAppLogo()}',
-        'name': parser.getName(),
-        'app_color': '#f47878'
-      };
-
-      String queryString = Uri(queryParameters: paymentPayLoad).query;
-      var paymentURL = AppConstants.razorPayLink + queryString;
-
-      Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
-    } else if (paymentId == 6) {
-      payWithInstaMojo();
-      // instamojo
-    } else if (paymentId == 7) {
-      var rng = Random();
-      var paykey = List.generate(12, (_) => rng.nextInt(100));
-      Get.delete<WebPaymentController>(force: true);
-      var paymentPayLoad = {'email': parser.getEmail(), 'amount': double.parse((grandTotal * 100).toStringAsFixed(2)).toString(), 'first_name': parser.getFirstName(), 'last_name': parser.getLastName(), 'ref': paykey.join()};
-      String queryString = Uri(queryParameters: paymentPayLoad).query;
-      var paymentURL = AppConstants.paystackCheckout + queryString;
-
-      Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
-      // paystock
-    } else if (paymentId == 8) {
-      //flutterwave
-      Get.delete<WebPaymentController>(force: true);
-      var gateway = paymentList.firstWhereOrNull((element) => element.id.toString() == paymentId.toString());
-      var paymentPayLoad = {
-        'amount': grandTotal.toString(),
-        'email': parser.getEmail(),
-        'phone': parser.getPhone(),
-        'name': parser.getName(),
-        'code': gateway!.currencyCode.toString(),
-        'logo': '${parser.apiService.appBaseUrl}storage/images/${parser.getAppLogo()}',
-        'app_name': Environments.appName
-      };
-
-      String queryString = Uri(queryParameters: paymentPayLoad).query;
-      var paymentURL = AppConstants.flutterwaveCheckout + queryString;
-
-      Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+      createOrder('COD');
+    } else if (paymentId == 9) {
+      createOrder('Loyalty Points');
     }
-  }
 
-  Future<void> createOrder() async {
+    // } else if (paymentId == 2) {
+    //   final int toPay = grandTotal.toInt() * 100;
+    //   debugPrint('Stripe Pay $payMethodName --- $toPay');
+    //   Get.delete<WebPaymentController>(force: true);
+    //   var paymentURL = AppConstants.stripeWebCheckoutLink + toPay.toString();
+    //   Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+    // } else if (paymentId == 3) {
+    //   Get.delete<WebPaymentController>(force: true);
+    //   var paymentURL = AppConstants.payPalPayLink + grandTotal.toString();
+    //   Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+    //   // paypal
+    // } else if (paymentId == 4) {
+    //   // paytm
+    //   Get.delete<WebPaymentController>(force: true);
+    //   var paymentURL = AppConstants.payTmPayLink + grandTotal.toString();
+    //   Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+    // } else if (paymentId == 5) {
+    //   // razorpay
+    //   Get.delete<WebPaymentController>(force: true);
+    //   var paymentPayLoad = {
+    //     'amount': double.parse((grandTotal * 100).toStringAsFixed(2)).toString(),
+    //     'email': parser.getEmail(),
+    //     'logo': '${parser.apiService.appBaseUrl}storage/images/${parser.getAppLogo()}',
+    //     'name': parser.getName(),
+    //     'app_color': '#f47878'
+    //   };
+
+    //   String queryString = Uri(queryParameters: paymentPayLoad).query;
+    //   var paymentURL = AppConstants.razorPayLink + queryString;
+
+    //   Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+    // } else if (paymentId == 6) {
+    //   payWithInstaMojo();
+    //   // instamojo
+    // } else if (paymentId == 7) {
+    //   var rng = Random();
+    //   var paykey = List.generate(12, (_) => rng.nextInt(100));
+    //   Get.delete<WebPaymentController>(force: true);
+    //   var paymentPayLoad = {'email': parser.getEmail(), 'amount': double.parse((grandTotal * 100).toStringAsFixed(2)).toString(), 'first_name': parser.getFirstName(), 'last_name': parser.getLastName(), 'ref': paykey.join()};
+    //   String queryString = Uri(queryParameters: paymentPayLoad).query;
+    //   var paymentURL = AppConstants.paystackCheckout + queryString;
+
+    //   Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+    //   // paystock
+    // } else if (paymentId == 8) {
+    //   //flutterwave
+    //   Get.delete<WebPaymentController>(force: true);
+    //   var gateway = paymentList.firstWhereOrNull((element) => element.id.toString() == paymentId.toString());
+    //   var paymentPayLoad = {
+    //     'amount': grandTotal.toString(),
+    //     'email': parser.getEmail(),
+    //     'phone': parser.getPhone(),
+    //     'name': parser.getName(),
+    //     'code': gateway!.currencyCode.toString(),
+    //     'logo': '${parser.apiService.appBaseUrl}storage/images/${parser.getAppLogo()}',
+    //     'app_name': Environments.appName
+    //   };
+
+    //   String queryString = Uri(queryParameters: paymentPayLoad).query;
+    //   var paymentURL = AppConstants.flutterwaveCheckout + queryString;
+
+    //   Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+    // }
+  }
+  Future<void> getLoyaltyPoints() async {
+  var response = await parser.fetchLoyaltyPoints({
+    'user_id': parser.getUID(),
+  });
+  if (response.statusCode == 200) {
+    Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
+    loyaltyPoints = double.tryParse(myMap['points'].toString()) ?? 0.0;
+    update();
+  } else {
+    ApiChecker.checkApi(response);
+  }
+}
+
+Future<void> saveLoyaltyPoints(double points) async {
+  var response = await parser.saveLoyaltyPoints({
+    "user_id": parser.getUID(),
+    "points": points.toInt(),
+  });
+
+  if (response.statusCode == 200) {
+    Get.snackbar(
+      'Loyalty Points Saved',
+      'You have earned $points loyalty points!',
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
+    getLoyaltyPoints();
+  } else {
+    ApiChecker.checkApi(response);
+  }
+}
+
+  Future<void> createOrder(String type) async {
+    if (type == 'Loyalty Points') {
+      //deduction API Call
+      var resp = await parser.deductLoyaltyPoints({ "user_id": parser.getUID(),"points": Get.find<ServiceCartController>().totalPrice.toInt() });
+      if (resp.statusCode != 200) {
+        Get.dialog(
+          SimpleDialog(
+            children: [
+              Row(
+                children: [
+                  const SizedBox(width: 30),
+                  const CircularProgressIndicator(
+                      color: ThemeProvider.appColor),
+                  const SizedBox(width: 30),
+                  SizedBox(
+                      child: Text("Error Paying through loyalty points",
+                          style: const TextStyle(fontFamily: 'bold'))),
+                ],
+              )
+            ],
+          ),
+        );
+        return;
+      }
+    }
+    if(type == 'COD') {
+    double pointsToSave = grandTotal * 0.05;
+
+    await saveLoyaltyPoints(pointsToSave);
+    }
+
     Get.dialog(
       SimpleDialog(
         children: [
@@ -467,7 +562,9 @@ class PaymentController extends GetxController implements GetxService {
               const SizedBox(width: 30),
               const CircularProgressIndicator(color: ThemeProvider.appColor),
               const SizedBox(width: 30),
-              SizedBox(child: Text("Please wait".tr, style: const TextStyle(fontFamily: 'bold'))),
+              SizedBox(
+                  child: Text("Please wait".tr,
+                      style: const TextStyle(fontFamily: 'bold'))),
             ],
           )
         ],
@@ -491,16 +588,21 @@ class PaymentController extends GetxController implements GetxService {
       "serviceTax": Get.find<ServiceCartController>().orderTax,
       "grand_total": grandTotal,
       "pay_method": paymentId,
-      "paid": "COD",
+      "paid": type,
       "save_date": Get.find<SlotController>().savedDate,
       "slot": Get.find<SlotController>().selectedSlotIndex,
       'wallet_used': isWalletChecked == true && walletDiscount > 0 ? 1 : 0,
-      'wallet_price': isWalletChecked == true && walletDiscount > 0 ? walletDiscount : 0,
+      'wallet_price':
+          isWalletChecked == true && walletDiscount > 0 ? walletDiscount : 0,
       "notes": notesEditor.text.isNotEmpty ? notesEditor.text : 'NA',
       "status": 0
     };
     var response = await parser.createAppoinments(param);
-    var notificationParam = {"id": Get.find<ServiceCartController>().salonId, "title": 'New Appointment', "message": 'New Appointment Received'};
+    var notificationParam = {
+      "id": Get.find<ServiceCartController>().salonId,
+      "title": 'New Appointment',
+      "message": 'New Appointment Received'
+    };
     await parser.sendNotification(notificationParam);
     Get.back();
 
@@ -513,15 +615,22 @@ class PaymentController extends GetxController implements GetxService {
             children: [
               Container(
                 padding: const EdgeInsets.all(10),
-                child: ClipRRect(borderRadius: BorderRadius.circular(100), child: Image.asset('assets/images/sure.gif', fit: BoxFit.cover, height: 60, width: 60)),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.asset('assets/images/sure.gif',
+                        fit: BoxFit.cover, height: 60, width: 60)),
               ),
               const SizedBox(height: 30),
-              Text('Thank You!'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 18)),
+              Text('Thank You!'.tr,
+                  style: const TextStyle(fontFamily: 'bold', fontSize: 18)),
               const SizedBox(height: 10),
-              Text('For Your Appoinment'.tr, style: const TextStyle(fontFamily: 'semi-bold', fontSize: 16)),
+              Text('For Your Appoinment'.tr,
+                  style:
+                      const TextStyle(fontFamily: 'semi-bold', fontSize: 16)),
               const SizedBox(height: 20),
               Text(
-                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'.tr,
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
+                    .tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 14),
               ),
@@ -534,14 +643,19 @@ class PaymentController extends GetxController implements GetxService {
                   foregroundColor: ThemeProvider.whiteColor,
                   backgroundColor: ThemeProvider.appColor,
                   minimumSize: const Size.fromHeight(45),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
                 ),
                 child: Text(
                   'TRACK MY APPOINTMENT'.tr,
-                  style: const TextStyle(color: ThemeProvider.whiteColor, fontSize: 14),
+                  style: const TextStyle(
+                      color: ThemeProvider.whiteColor, fontSize: 14),
                 ),
               ),
-              TextButton(onPressed: () => backHome(), child: Text('BACK TO HOME'.tr, style: const TextStyle(color: ThemeProvider.appColor))),
+              TextButton(
+                  onPressed: () => backHome(),
+                  child: Text('BACK TO HOME'.tr,
+                      style: const TextStyle(color: ThemeProvider.appColor))),
             ],
           ),
         ),
@@ -561,7 +675,9 @@ class PaymentController extends GetxController implements GetxService {
               const SizedBox(width: 30),
               const CircularProgressIndicator(color: ThemeProvider.appColor),
               const SizedBox(width: 30),
-              SizedBox(child: Text("Please wait".tr, style: const TextStyle(fontFamily: 'bold'))),
+              SizedBox(
+                  child: Text("Please wait".tr,
+                      style: const TextStyle(fontFamily: 'bold'))),
             ],
           )
         ],
@@ -585,10 +701,12 @@ class PaymentController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
       dynamic body = myMap["success"];
-      if (body['payment_request'] != '' && body['payment_request']['longurl'] != '') {
+      if (body['payment_request'] != '' &&
+          body['payment_request']['longurl'] != '') {
         Get.delete<WebPaymentController>(force: true);
         var paymentURL = body['payment_request']['longurl'];
-        Get.toNamed(AppRouter.getWebPayment(), arguments: [payMethodName, paymentURL, 'salon']);
+        Get.toNamed(AppRouter.getWebPayment(),
+            arguments: [payMethodName, paymentURL, 'salon']);
       }
     } else {
       ApiChecker.checkApi(response);

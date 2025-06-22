@@ -57,7 +57,7 @@ class AppointmentDetailController extends GetxController implements GetxService 
   String invoiceURL = '';
   String orderStatus = '';
 
-  List<String> paymentName = ['NA', 'COD'.tr, 'Stripe'.tr, 'PayPal'.tr, 'Paytm'.tr, 'Razorpay'.tr, 'Instamojo'.tr, 'Paystack'.tr, 'Flutterwave'.tr];
+  List<String> paymentName = ['NA', 'COD'.tr, 'Stripe'.tr, 'PayPal'.tr, 'Paytm'.tr, 'Razorpay'.tr, 'Instamojo'.tr, 'Paystack'.tr, 'Flutterwave'.tr, 'Loyalty Points'.tr];
   AppointmentDetailController({required this.parser});
 
   @override
@@ -70,6 +70,17 @@ class AppointmentDetailController extends GetxController implements GetxService 
     invoiceURL = '${parser.apiService.appBaseUrl}${AppConstants.getAppointmentsInvoice}$appointmentId&token=${parser.getToken()}';
     getAppointmentDetails();
   }
+    void navigateToFeedbackScreen(int? salon_id, int? specialist_id, int? freelancer_id, int? user_id) {
+      
+    Get.toNamed(AppRouter.getFeedbackRoutes(),arguments: [salon_id, specialist_id, freelancer_id, user_id] );
+  }
+
+  void onAppointment(int id) {
+  
+    Get.toNamed(AppRouter.getAppointmentDetailRoutes(), arguments: [id]);
+  }
+
+
 
   Future<void> getAppointmentDetails() async {
     var response = await parser.getAppointmentDetails({"id": appointmentId});
@@ -81,6 +92,7 @@ class AppointmentDetailController extends GetxController implements GetxService 
       _appointmentInfo = AppointmentModel();
       AppointmentModel info = AppointmentModel.fromJson(body);
       _appointmentInfo = info;
+      // appointmentInfo.status = 4;
       if (appointmentInfo.status == 1) {
         orderStatus = 'Accepted'.tr;
       } else if (appointmentInfo.status == 2) {
@@ -382,6 +394,20 @@ class AppointmentDetailController extends GetxController implements GetxService 
     );
   }
 
+  void _openWhatsAppChat(String phone) async {
+  // Remove any non-digit characters (e.g., spaces, hyphens)
+  String formattedPhone = phone.replaceAll(RegExp(r'[^0-9]'), '');
+
+  // WhatsApp URL format: "https://wa.me/<phone>"
+  String whatsappUrl = "https://wa.me/$formattedPhone";
+
+  if (await canLaunchUrl(Uri.parse(whatsappUrl))) {
+    await launchUrl(Uri.parse(whatsappUrl));
+  } else {
+    Get.snackbar('Error', 'WhatsApp is not installed.');
+  }
+}
+
   void onContactInfo(String name, String phone, String email, String uid) {
     var context = Get.context as BuildContext;
     showCupertinoModalPopup<void>(
@@ -398,12 +424,19 @@ class AppointmentDetailController extends GetxController implements GetxService 
             },
           ),
           CupertinoActionSheetAction(
-            child: Text('Call'.tr, style: const TextStyle(color: ThemeProvider.appColor)),
+            child: Text(phone, style: const TextStyle(color: ThemeProvider.appColor)),
             onPressed: () {
               Navigator.pop(context);
               makePhoneCall(phone);
             },
           ),
+          CupertinoActionSheetAction(
+          child: Text('WhatsApp', style: const TextStyle(color: Colors.green)), // WhatsApp option
+          onPressed: () {
+            Navigator.pop(context);
+            _openWhatsAppChat(phone); // Function to open WhatsApp
+          },
+        ),
           CupertinoActionSheetAction(
             child: Text('Email'.tr, style: const TextStyle(color: ThemeProvider.appColor)),
             onPressed: () {

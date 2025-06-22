@@ -763,6 +763,6 @@ class _SpecialistScreenState extends State<SpecialistScreen> {
 contentButtonStyle() {
   return const BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(100.0)),
-    gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [Color.fromARGB(229, 52, 1, 255), Color.fromARGB(228, 111, 75, 255)]),
+    gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [Color.fromARGB(255, 1, 112, 112), Color(0xFF008080)]),
   );
 }

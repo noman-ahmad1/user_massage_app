@@ -33,7 +33,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
           children: <Widget>[
             value.parser.haveLoggedIn()
                 ? SizedBox(
-                    height: 160,
+                    height: 210,
                     child: DrawerHeader(
                       decoration: const BoxDecoration(color: ThemeProvider.appColor),
                       padding: const EdgeInsets.all(16),
@@ -97,6 +97,17 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                           leading: const Icon(Icons.location_on_outlined, color: ThemeProvider.greyColor),
                           title: Text('Address'.tr, style: sidemenuTitle()))
                       : const SizedBox(),
+                      // loyalty points
+                      value.parser.haveLoggedIn()
+                      ? ListTile(
+                          onTap: () {
+                            Scaffold.of(context).openEndDrawer();
+                            Get.toNamed(AppRouter.loyaltyPointsRoutes);
+                          },
+                          contentPadding: const EdgeInsets.all(0),
+                          leading: const Icon(Icons.loyalty_outlined, color: ThemeProvider.greyColor),
+                          title: Text('Loyalty Points'.tr, style: sidemenuTitle()))
+                      : const SizedBox(),
                   value.parser.haveLoggedIn()
                       ? ListTile(
                           onTap: () {
@@ -135,16 +146,16 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                       contentPadding: const EdgeInsets.all(0),
                       leading: const Icon(Icons.language_outlined, color: ThemeProvider.greyColor),
                       title: Text('Languages'.tr, style: sidemenuTitle())),
-                  value.parser.haveLoggedIn()
-                      ? ListTile(
-                          onTap: () {
-                            Scaffold.of(context).openEndDrawer();
-                            Get.toNamed(AppRouter.accountChatRoutes);
-                          },
-                          contentPadding: const EdgeInsets.all(0),
-                          leading: const Icon(Icons.message_outlined, color: ThemeProvider.greyColor),
-                          title: Text('Chats'.tr, style: sidemenuTitle()))
-                      : const SizedBox(),
+                  // value.parser.haveLoggedIn()
+                  //     ? ListTile(
+                  //         onTap: () {
+                  //           Scaffold.of(context).openEndDrawer();
+                  //           Get.toNamed(AppRouter.accountChatRoutes);
+                  //         },
+                  //         contentPadding: const EdgeInsets.all(0),
+                  //         leading: const Icon(Icons.message_outlined, color: ThemeProvider.greyColor),
+                  //         title: Text('Chats'.tr, style: sidemenuTitle()))
+                  //     : const SizedBox(),
                   ListTile(
                       onTap: () {
                         Scaffold.of(context).openEndDrawer();

@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       getPages: AppRouter.routes,
       defaultTransition: Transition.native,
       translations: LocaleString(),
-      locale: const Locale('en', 'US'),
+      locale: const Locale('th', 'TH'),
     );
   }
 }

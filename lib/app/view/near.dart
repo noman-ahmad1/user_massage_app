@@ -25,7 +25,7 @@ class _NearScreenState extends State<NearScreen> {
   @override
   Widget build(BuildContext context) {
     void onMapCreated(GoogleMapController controller) {
-      // controller.setMapStyle(Utils.mapStyles);
+      controller.setMapStyle(Utils.mapStyles);
       Get.find<NearController>().googleMapsController.complete(controller);
     }
 
@@ -110,7 +110,7 @@ class _NearScreenState extends State<NearScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 10),
-                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Top Salon'.tr, style: const TextStyle(fontSize: 14, fontFamily: 'bold'))]),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Top Massage Center'.tr, style: const TextStyle(fontSize: 14, fontFamily: 'bold'))]),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 5),
@@ -174,7 +174,9 @@ class _NearScreenState extends State<NearScreen> {
                                                                 Padding(
                                                                   padding: const EdgeInsets.only(bottom: 15),
                                                                   child: Text(
-                                                                    item.address!.length > 15 ? '${item.address!.substring(0, 27)}...' : item.address.toString(),
+                                                                    item.address!.length > 15
+                                                                              ? '${item.address!.substring(0, item.address!.length > 27 ? 27 : item.address!.length)}...'
+                                                                              : item.address.toString(),
                                                                     overflow: TextOverflow.ellipsis,
                                                                     style: const TextStyle(fontSize: 12, color: ThemeProvider.greyColor),
                                                                   ),
