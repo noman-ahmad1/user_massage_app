@@ -8,9 +8,13 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:user/app/backend/api/handler.dart';
+import 'package:user/app/backend/models/appointment_model.dart';
 import 'package:user/app/backend/models/service_cart_model.dart';
 import 'package:user/app/backend/parse/checkout_parse.dart';
+import 'package:user/app/backend/parse/service_cart_parse.dart';
 import 'package:user/app/controller/coupon_controller.dart';
+import 'package:user/app/controller/individual_slot_controller.dart';
 import 'package:user/app/controller/login_controller.dart';
 import 'package:user/app/controller/service_cart_controller.dart';
 import 'package:user/app/controller/slot_controller.dart';
@@ -25,6 +29,10 @@ class CheckoutController extends GetxController implements GetxService {
   ServiceCartModel _savedInCart = ServiceCartModel();
   ServiceCartModel get savedInCart => _savedInCart;
 
+
+  AppointmentModel _appointmentInfo = AppointmentModel();
+  AppointmentModel get appointmentInfo => _appointmentInfo;
+
   String currencySide = AppConstants.defaultCurrencySide;
   String currencySymbol = AppConstants.defaultCurrencySymbol;
 
@@ -34,7 +42,34 @@ class CheckoutController extends GetxController implements GetxService {
   void onInit() {
     _savedInCart = Get.find<ServiceCartController>().savedInCart;
     super.onInit();
+    // getAppointmentByAppointmentType();
   }
+
+  Future<void> getAppointmentByAppointmentType() async {
+  try {
+    Response response = await parser.getAppointmentById();
+    
+    if (response.statusCode == 200) {
+      Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
+      var body = myMap['data'];
+      debugPrint('Response body: $body');
+      _appointmentInfo = AppointmentModel.fromJson(body);
+      
+      debugPrint('Appointment type from API: ${_appointmentInfo?.appointmentsTo}');
+      
+      if (_appointmentInfo?.appointmentsTo == null) {
+        throw Exception('Appointment type not specified in API response');
+      }
+      
+      update();
+    } else {
+      ApiChecker.checkApi(response);
+    }
+  } catch (e) {
+    debugPrint('Error in getAppointmentByAppointmentType: $e');
+    Get.snackbar('Error', 'Failed to load appointment: ${e.toString()}');
+  }
+}
 
   void onCoupon() {
     Get.delete<CouponController>(force: true);
@@ -42,10 +77,17 @@ class CheckoutController extends GetxController implements GetxService {
   }
 
   void onSlot() {
-    if (parser.isLogin() == true) {
+    String serviceFrom = parser.getServicesFrom();
+
+  if (parser.isLogin() == true) {
+    if (serviceFrom == "salon") {
       Get.delete<SlotController>(force: true);
       Get.toNamed(AppRouter.getSlotRoutes());
-    } else {
+    } else if (serviceFrom == "individual") {
+      Get.delete<IndividualSlotController>(force: true);
+      Get.toNamed(AppRouter.getIndividualSlot());
+    }
+  } else {
       Get.delete<LoginController>(force: true);
       Get.toNamed(AppRouter.getLoginRoute());
     }

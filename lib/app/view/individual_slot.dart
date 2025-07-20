@@ -43,7 +43,7 @@ class _IndividualSlotScreenState extends State<IndividualSlotScreen> {
                       children: [
                         Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('Select Date'.tr, style: const TextStyle(fontFamily: 'bold', fontSize: 14))]),
                         Container(
-                          height: 100,
+                          height: 110,
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                           decoration: BoxDecoration(

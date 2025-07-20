@@ -6,6 +6,7 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2025-present initappz.
 */
+import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:user/app/backend/api/api.dart';
 import 'package:user/app/helper/shared_pref.dart';
 import 'package:user/app/util/constant.dart';
@@ -19,9 +20,16 @@ class CheckoutParser {
   void saveToken(String token) {
     sharedPreferencesManager.putString('token', token);
   }
+    String getServicesFrom() {
+    return sharedPreferencesManager.getString('serviceFrom') ?? '';
+  }
 
   void saveUID(String id) {
     sharedPreferencesManager.putString('uid', id);
+  }
+
+  Future<Response> getAppointmentById() async {
+    return await apiService.postPrivate(AppConstants.getAppoimentById, {'id': sharedPreferencesManager.getString('uid')}, sharedPreferencesManager.getString('token') ?? '');
   }
 
   bool isLogin() {

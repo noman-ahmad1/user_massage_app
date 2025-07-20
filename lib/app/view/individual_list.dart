@@ -76,6 +76,8 @@ class _IndividualListScreenState extends State<IndividualListScreen> {
                                             ),
                                           ),
                                         ),
+                                        if (value.servicesList[i].ids?.length ==
+                                            1)
                                         Positioned(
                                           top: 0,
                                           left: 0,
@@ -102,11 +104,34 @@ class _IndividualListScreenState extends State<IndividualListScreen> {
                                           Positioned(
                                             right: 20,
                                             top: 10,
+                                            child: AbsorbPointer(
+                                               absorbing: (value.servicesList[i]
+                                                        .ids?.length ==
+                                                    1) || (value.servicesList[i]
+                                                        .ids!.length >
+                                                    1 && value.servicesList[i]
+                                                        .isChecked == true)
+                                                ? false
+                                                : true,
                                             child: Checkbox(
                                               checkColor: Colors.white,
                                               activeColor: ThemeProvider.appColor,
                                               value: value.servicesList[i].isChecked,
-                                              onChanged: (status) => value.updateServiceStatusInCart(i, status as bool),
+                                              // onChanged: (status) => value.updateServiceStatusInCart(i, status as bool),
+                                              onChanged: (status) {
+                                                  value.servicesList[i]
+                                                        .ids!.length >
+                                                    1 && value.servicesList[i]
+                                                        .isChecked == true ?
+                                                  value.onUncheck(i,false,value.servicesList[i]
+                                                        .id!):
+
+                                                  value
+                                                    .updateServiceStatusInCart(
+                                                        i, status as bool);
+
+                                                }
+                                            ),
                                             ),
                                           ),
                                           Column(
@@ -114,6 +139,9 @@ class _IndividualListScreenState extends State<IndividualListScreen> {
                                             children: [
                                               Text(value.servicesList[i].name.toString(), overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'bold', fontSize: 14)),
                                               const SizedBox(height: 2),
+                                              if (value.servicesList[i]
+                                                      .durations!.length ==
+                                                  1)...[
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
@@ -133,10 +161,87 @@ class _IndividualListScreenState extends State<IndividualListScreen> {
                                                 ),
                                               ),
                                               Text(
-                                                value.servicesList[i].duration.toString() + ' min'.tr,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(color: ThemeProvider.greyColor, fontSize: 12),
+                                                value.servicesList[i].duration.toString() + ' min'.tr,overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    color:
+                                                        ThemeProvider.greyColor,
+                                                    fontSize: 12),
                                               ),
+                                                  ],
+                                              if (value.servicesList[i]
+                                                      .durations!.length >
+                                                  1)...[
+                                                    if(value.servicesList[i].selectedSubId != null)
+                                                         RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: Get.find<IndividualListController>()
+                                                                  .currencySide ==
+                                                              'left'
+                                                          ? '${Get.find<IndividualListController>().currencySymbol}  ${value.servicesList[i].prices![value.servicesList[i].selectedSubId]}'
+                                                          : '  ${value.servicesList[i].prices![value.servicesList[i].selectedSubId]}${Get.find<IndividualListController>().currencySymbol}',
+                                                      style: const TextStyle(
+                                                          fontSize: 12,
+                                                          color: ThemeProvider
+                                                              .greyColor,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough),
+                                                    ),
+                                                    TextSpan(
+                                                      text: Get.find<IndividualListController>()
+                                                                  .currencySide ==
+                                                              'left'
+                                                          ? '${Get.find<IndividualListController>().currencySymbol}  ${value.servicesList[i].offs![value.servicesList[i].selectedSubId]}'
+                                                          : '  ${value.servicesList[i].offs![value.servicesList[i].selectedSubId]}${Get.find<IndividualListController>().currencySymbol}',
+                                                      style: const TextStyle(
+                                                          fontSize: 12,
+                                                          color: ThemeProvider
+                                                              .greenColor,
+                                                          fontFamily: 'bold'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                                   Text(
+                                                
+                                                    'Select Massage Period'.tr,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    color:
+                                                        ThemeProvider.blackColor,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400
+                                                    ),
+                                              ),
+                                              DropdownButton<dynamic>(
+                                                  value: value.servicesList[i].selectedVariant,
+                                                  isExpanded: true,
+                                                  icon: const Icon(
+                                                      Icons.expand_more),
+                                                  elevation: 16,
+                                                  style: const TextStyle(
+                                                      color: ThemeProvider
+                                                          .appColor),
+                                                  underline: const SizedBox(),
+                                                  onChanged: (dynamic?
+                                                          newValue) =>
+                                                      value.onUpdateDayName(newValue, i, true,value.servicesList[i].id!  ),
+                                                  items: 
+                                                    value.servicesList[i]
+                                                        .durations!
+                                                  .map<
+                                                          DropdownMenuItem<
+                                                              dynamic>>(
+                                                      (dynamic selected) {
+                                                    return DropdownMenuItem<
+                                                            dynamic>(
+                                                        value: selected,
+                                                        child: Text(selected.toString()));
+                                                  }).toList(),
+                                                ),
+                                                  ]
                                             ],
                                           ),
                                         ],

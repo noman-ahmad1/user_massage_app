@@ -281,7 +281,7 @@ class _IndividualPaymentScreenState extends State<IndividualPaymentScreen> {
                 ),
           bottomNavigationBar: Container(
             color: Colors.white,
-            height: 136,
+            height: 150,
             child: Column(
               children: [
                 ListTile(

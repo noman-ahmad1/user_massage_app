@@ -28,6 +28,7 @@ class ServicesModel {
   List<dynamic>? ids;
   dynamic selectedVariant;
   dynamic selectedSubId;
+  
 
   ServicesModel({this.id, this.uid, this.cateId, this.name, this.cover, this.duration, this.price, this.off, this.discount, this.descriptions, this.images, this.extraField, this.isChecked = false, this.status, this.prices = const [],
     this.discounts = const [],
